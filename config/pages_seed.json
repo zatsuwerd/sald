@@ -1,0 +1,93 @@
+[
+  {
+    "title": "About Us & Brand Story",
+    "handle": "about-us",
+    "template_suffix": "about",
+    "tags": [
+      "company",
+      "brand",
+      "story"
+    ],
+    "published": true,
+    "summary": "Discover the story behind SALD - building professional-grade outdoor and aquatic equipment for active families.",
+    "body_html": "\n      <div class=\"sald-page-content\">\n        <h2>Engineered for Active Family Memories</h2>\n        <p>Founded in 2021 by recreation enthusiasts and industrial designers, SALD was created to solve a universal backyard problem: flimsy pool toys that degrade in weeks, rust under sprinkler spray, or sink on day one.</p>\n        <p>Every SALD product is engineered using ultra-durable marine-grade UV-resistant polymers, salt-water and chlorine-tested hardware, and weighted stabilizer bases.</p>\n        <ul>\n          <li><strong>Chlorine & Salt-Resistant:</strong> Double-sealed seams and non-fading pigments.</li>\n          <li><strong>Family First:</strong> Safe for toddlers and robust enough for competitive adults.</li>\n          <li><strong>Sustainable Joy:</strong> Built to last 5+ seasons without plastic fatigue.</li>\n        </ul>\n      </div>\n    "
+  },
+  {
+    "title": "Contact Customer Support",
+    "handle": "contact",
+    "template_suffix": "contact",
+    "tags": [
+      "support",
+      "contact",
+      "customer-service"
+    ],
+    "published": true,
+    "summary": "Get in touch with the SALD support crew. Fast 24-hour response on all order and warranty inquiries.",
+    "body_html": "\n      <div class=\"sald-page-content\">\n        <h2>We're Here to Help</h2>\n        <p>Have a question about pool compatibility, delivery times, or tournament setup? Our product specialists are ready to help.</p>\n        <p><strong>Email:</strong> support@sald-outdoors.com<br>\n        <strong>Phone:</strong> +1 (800) 555-SALD<br>\n        <strong>Hours:</strong> Mon - Sat: 8:00 AM – 7:00 PM EST</p>\n      </div>\n    "
+  },
+  {
+    "title": "Frequently Asked Questions",
+    "handle": "faq",
+    "template_suffix": "faq",
+    "tags": [
+      "help",
+      "faq",
+      "support"
+    ],
+    "published": true,
+    "summary": "Answers to the most common questions regarding SALD games, setup, shipping times, and chlorine resistance.",
+    "body_html": "\n      <div class=\"sald-page-content\">\n        <h2>Frequently Asked Questions</h2>\n        <h3>Are SALD pool basketball hoops compatible with saltwater pools?</h3>\n        <p>Yes! All SALD hardware is crafted from marine-grade 316 stainless steel and UV-stabilized heavy-duty polymer, specifically tested in chlorinated and saltwater swimming pools.</p>\n        <h3>What is the 30-Day Splash Guarantee?</h3>\n        <p>If you or your family are not 100% delighted with your game within 30 days of delivery, return it for a full refund—no restocking fees.</p>\n        <h3>How fast does express shipping take?</h3>\n        <p>Domestic orders ship from our warehouse within 24 hours. Express delivery arrives within 2-4 business days.</p>\n      </div>\n    "
+  },
+  {
+    "title": "Shipping Policy & Delivery Tiers",
+    "handle": "shipping-policy",
+    "template_suffix": "policies",
+    "tags": [
+      "policy",
+      "shipping",
+      "legal"
+    ],
+    "published": true,
+    "summary": "Details on domestic express shipping, free shipping thresholds over $75, and international fulfillment.",
+    "body_html": "\n      <div class=\"sald-page-content\">\n        <h2>Shipping & Delivery Policy</h2>\n        <p>We pride ourselves on getting your outdoor gear delivered before the weekend game begins.</p>\n        <ul>\n          <li><strong>Free Express Shipping:</strong> Automatically applied at checkout on all orders of $75+.</li>\n          <li><strong>Standard Ground (2-5 Days):</strong> Flat rate $5.95 on orders under $75.</li>\n          <li><strong>Next-Day Air:</strong> Available at checkout for urgent party deliveries.</li>\n        </ul>\n      </div>\n    "
+  },
+  {
+    "title": "Warranty & 30-Day Splash Guarantee",
+    "handle": "warranty-guarantee",
+    "template_suffix": "policies",
+    "tags": [
+      "warranty",
+      "guarantee",
+      "policy"
+    ],
+    "published": true,
+    "summary": "SALD 1-year unconditional chlorine, sun, and defect warranty.",
+    "body_html": "\n      <div class=\"sald-page-content\">\n        <h2>The 1-Year SALD Splash Guarantee</h2>\n        <p>If any SALD game hoop, net, float, or lawn game exhibits manufacturing defects or UV sun degradation within 365 days of purchase, email us a photo and we will dispatch a brand new replacement free of charge.</p>\n      </div>\n    "
+  },
+  {
+    "title": "Returns & Refund Policy",
+    "handle": "refund-policy",
+    "template_suffix": "policies",
+    "tags": [
+      "policy",
+      "refund",
+      "returns"
+    ],
+    "published": true,
+    "summary": "Hassle-free 30-day return process with prepaid return labels.",
+    "body_html": "\n      <div class=\"sald-page-content\">\n        <h2>30-Day Hassle-Free Returns</h2>\n        <p>To start a return, visit our returns portal or email support@sald-outdoors.com with your order number. We provide instant prepaid return shipping labels.</p>\n      </div>\n    "
+  },
+  {
+    "title": "Theme & Page Setup Assistant",
+    "handle": "page-importer",
+    "template_suffix": "importer",
+    "tags": [
+      "admin",
+      "setup",
+      "tools"
+    ],
+    "published": true,
+    "summary": "Shopify Online Store 2.0 template validator and page structure assistant for store managers.",
+    "body_html": "\n      <div class=\"sald-page-content\">\n        <h2>SALD OS 2.0 Page & Template Manifest</h2>\n        <p>This page confirms all Shopify Online Store 2.0 JSON templates are active and correctly registered in the theme schema.</p>\n      </div>\n    "
+  }
+]

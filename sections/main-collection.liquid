@@ -1,0 +1,52 @@
+<section class="sald-main-collection py-12 bg-white" data-section-id="{{ section.id }}">
+  <div class="max-w-[var(--page-width)] mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="mb-8 pb-6 border-b border-slate-200 flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div>
+        <h1 class="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">{{ collection.title | default: 'All Outdoor Games' }}</h1>
+        <p class="text-slate-600 font-medium text-sm mt-1">{{ collection.products_count | default: 24 }} products available</p>
+      </div>
+
+      <!-- Sorting -->
+      <div class="flex items-center gap-3">
+        <label for="SortBy" class="text-xs font-bold text-slate-500">Sort by:</label>
+        <select id="SortBy" class="px-4 py-2 border border-slate-300 rounded-xl text-sm font-semibold text-slate-800 bg-white focus:outline-none focus:border-cyan-500">
+          <option value="manual">Featured</option>
+          <option value="best-selling">Best Selling</option>
+          <option value="price-ascending">Price: Low to High</option>
+          <option value="price-descending">Price: High to Low</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Product Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+      {%- for product in collection.products -%}
+        {% render 'product-card', product: product %}
+      {%- else -%}
+        <div class="col-span-full py-16 text-center">
+          <p class="text-slate-500 text-lg font-medium">No products found in this collection.</p>
+          <a href="/collections/all" class="mt-4 inline-block px-6 py-3 bg-cyan-500 text-white font-bold rounded-full text-sm">Explore All Products</a>
+        </div>
+      {%- endfor -%}
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Collection Grid",
+  "settings": [
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 2,
+      "max": 4,
+      "step": 1,
+      "label": "Desktop columns",
+      "default": 4
+    }
+  ]
+}
+{% endschema %}

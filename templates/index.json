@@ -1,0 +1,264 @@
+{
+  "sections": {
+    "video_hero": {
+      "type": "video-hero",
+      "settings": {
+        "eyebrow": "PLAY • SPLASH • ENJOY",
+        "heading": "Make Every Outdoor Moment More Fun",
+        "description": "Discover pool games, playground fun and outdoor games designed for unforgettable family moments.",
+        "button_primary_label": "Shop Best Sellers",
+        "button_primary_link": "/collections/all",
+        "button_secondary_label": "Explore Categories",
+        "button_secondary_link": "#categories",
+        "overlay_opacity": 35,
+        "content_alignment": "center",
+        "hero_height_desktop": 680,
+        "hero_height_mobile": 520,
+        "autoplay": true,
+        "loop": true,
+        "muted": true
+      }
+    },
+    "categories": {
+      "type": "category-grid",
+      "settings": {
+        "title": "Shop By Category",
+        "subtitle": "Engineered for active pool days, backyard tournaments and lawn fun",
+        "columns_desktop": 4
+      },
+      "blocks": {
+        "cat_1": {
+          "type": "category_item",
+          "settings": {
+            "title": "Pool Games & Floats",
+            "tagline": "Underwater hoops, floating nets & diving treasures",
+            "link": "/collections/pool-games"
+          }
+        },
+        "cat_2": {
+          "type": "category_item",
+          "settings": {
+            "title": "Playground & Agility",
+            "tagline": "Obstacle sets, swings & balancing courses",
+            "link": "/collections/playground"
+          }
+        },
+        "cat_3": {
+          "type": "category_item",
+          "settings": {
+            "title": "Garden & Lawn Games",
+            "tagline": "Giant tumble towers, croquet & cornhole",
+            "link": "/collections/garden-games"
+          }
+        },
+        "cat_4": {
+          "type": "category_item",
+          "settings": {
+            "title": "Family & Party Games",
+            "tagline": "Outdoor entertainment for all ages & gatherings",
+            "link": "/collections/family-games"
+          }
+        }
+      },
+      "block_order": ["cat_1", "cat_2", "cat_3", "cat_4"]
+    },
+    "featured_collection": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "Trending Pool & Backyard Essentials",
+        "subtitle": "Our summer top-picks tested for chlorine resistance, UV durability, and pure joy",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "show_view_all": true
+      }
+    },
+    "benefits_trust": {
+      "type": "benefits-trust",
+      "settings": {
+        "section_badge": "The SALD Standard",
+        "heading": "Engineered for Sunshine, Laughter & Long-Lasting Durability"
+      },
+      "blocks": {
+        "b1": {
+          "type": "benefit_item",
+          "settings": {
+            "icon": "shield-check",
+            "title": "UV & Chlorine Proof",
+            "text": "Made with high-grade, marine-tested polymers that will not fade or crack."
+          }
+        },
+        "b2": {
+          "type": "benefit_item",
+          "settings": {
+            "icon": "truck",
+            "title": "Free Express Delivery",
+            "text": "On all orders over $75 within 48 hours right to your front lawn."
+          }
+        },
+        "b3": {
+          "type": "benefit_item",
+          "settings": {
+            "icon": "smile",
+            "title": "Child-Safe Certified",
+            "text": "BPA-free, non-toxic, and tested according to the highest global safety standards."
+          }
+        },
+        "b4": {
+          "type": "benefit_item",
+          "settings": {
+            "icon": "repeat",
+            "title": "30-Day Splash Guarantee",
+            "text": "Try it in your pool or backyard risk-free with simple, hassle-free returns."
+          }
+        }
+      },
+      "block_order": ["b1", "b2", "b3", "b4"]
+    },
+    "best_sellers": {
+      "type": "best-sellers",
+      "settings": {
+        "title": "Customer Favorites & Best Sellers",
+        "subtitle": "Rated 4.9/5 by over 12,000 outdoor-loving families and resorts",
+        "products_to_show": 4
+      }
+    },
+    "image_with_text": {
+      "type": "image-with-text",
+      "settings": {
+        "eyebrow": "UNPLUG THE SCREENS",
+        "heading": "Turn Your Backyard into the Ultimate Adventure Park",
+        "text": "At SALD, we believe the best childhood memories happen outdoors under the sun with wet hair, bare feet, and contagious laughter. Every piece of equipment is designed for rapid 5-minute setup and years of active play.",
+        "button_label": "Discover the SALD Story",
+        "button_link": "/pages/about-us",
+        "layout": "image_first"
+      }
+    },
+    "shop_by_activity": {
+      "type": "shop-by-activity",
+      "settings": {
+        "title": "Shop by Activity",
+        "subtitle": "Find the perfect gear matched to your outdoor environment"
+      },
+      "blocks": {
+        "a1": {
+          "type": "activity_card",
+          "settings": {
+            "title": "Pool Party Chaos",
+            "tag": "Water Games",
+            "description": "Volleyball sets, floating slam hoops, and dive-ring relay challenges.",
+            "link": "/collections/pool-games"
+          }
+        },
+        "a2": {
+          "type": "activity_card",
+          "settings": {
+            "title": "Lawn Tournaments",
+            "tag": "Garden Fun",
+            "description": "Bocce, giant dominoes, and cornhole boards crafted from weather-treated birch.",
+            "link": "/collections/garden-games"
+          }
+        },
+        "a3": {
+          "type": "activity_card",
+          "settings": {
+            "title": "Kids Agility Course",
+            "tag": "Active Playground",
+            "description": "Slacklines, stepping stones, and climbing ladders for high-energy play.",
+            "link": "/collections/playground"
+          }
+        }
+      },
+      "block_order": ["a1", "a2", "a3"]
+    },
+    "promotional_banner": {
+      "type": "promotional-banner",
+      "settings": {
+        "eyebrow": "LIMITED TIME OFFER",
+        "heading": "Summer Splash Days: Take 20% Off All Pool Games",
+        "text": "Upgrade your swimming pool entertainment before hot summer weekends sell out.",
+        "button_label": "Shop Splash Sale",
+        "button_link": "/collections/pool-games",
+        "bg_color": "#00C2CB",
+        "text_color": "#FFFFFF"
+      }
+    },
+    "video_feature": {
+      "type": "video-feature",
+      "settings": {
+        "heading": "See SALD in Real Action",
+        "subheading": "Watch families, resort guests, and competitive kids putting our games to the test",
+        "autoplay": true,
+        "loop": true,
+        "muted": true
+      }
+    },
+    "testimonials": {
+      "type": "testimonials",
+      "settings": {
+        "heading": "Loved by Over 12,000 Families",
+        "subtitle": "Real feedback from backyards, pool parties, and vacation homes"
+      },
+      "blocks": {
+        "t1": {
+          "type": "testimonial_item",
+          "settings": {
+            "author": "Jessica & Mark T.",
+            "location": "Miami, FL",
+            "stars": 5,
+            "quote": "The Pro Splash Hoops transformed our pool weekends! The kids have spent hours outside every day instead of being glued to their tablets.",
+            "verified": true
+          }
+        },
+        "t2": {
+          "type": "testimonial_item",
+          "settings": {
+            "author": "David K.",
+            "location": "Austin, TX",
+            "stars": 5,
+            "quote": "The giant tumble tower and lawn bocce set are incredible quality. Heavy-duty timber, brilliant carry bag, and withstood a summer storm effortlessly.",
+            "verified": true
+          }
+        },
+        "t3": {
+          "type": "testimonial_item",
+          "settings": {
+            "author": "Sarah L.",
+            "location": "San Diego, CA",
+            "stars": 5,
+            "quote": "Fast delivery, zero setup headache. The underwater dive relay game has been the undisputed hit of our neighborhood summer block party!",
+            "verified": true
+          }
+        }
+      },
+      "block_order": ["t1", "t2", "t3"]
+    },
+    "social_feed": {
+      "type": "social-feed",
+      "settings": {
+        "heading": "Join The #SALDfun Community",
+        "subheading": "Tag @sald.outdoor to be featured on our active summer wall"
+      }
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "settings": {
+        "heading": "Never Miss the Fun",
+        "subheading": "Sign up for exclusive drops, backyard game guides, and 15% off your first order."
+      }
+    }
+  },
+  "order": [
+    "video_hero",
+    "categories",
+    "featured_collection",
+    "benefits_trust",
+    "best_sellers",
+    "image_with_text",
+    "shop_by_activity",
+    "promotional_banner",
+    "video_feature",
+    "testimonials",
+    "social_feed",
+    "newsletter"
+  ]
+}

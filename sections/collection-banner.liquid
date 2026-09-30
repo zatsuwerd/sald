@@ -1,0 +1,58 @@
+<div class="collection-banner py-10 md:py-14 bg-surface border-b border-slate-200">
+  <div class="page-width mx-auto px-4 md:px-8 max-w-7xl">
+    <nav class="mb-4 text-xs text-slate-500" aria-label="breadcrumbs">
+      <a href="{{ routes.root_url }}" class="hover:text-cyan-600">{{ 'general.breadcrumbs.home' | t | default: 'Home' }}</a>
+      <span class="mx-2">&rsaquo;</span>
+      <span class="text-slate-800 font-semibold">{{ collection.title }}</span>
+    </nav>
+
+    <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+      <div class="max-w-2xl">
+        <span class="inline-block py-1 px-3 mb-2 text-xs font-black uppercase tracking-wider rounded-full bg-cyan-100 text-cyan-800">
+          {{ 'sections.collection.outdoor_collection' | t | default: 'SALD Catalog' }}
+        </span>
+        <h1 class="text-3xl md:text-5xl font-black text-slate-900 tracking-tight">
+          {{ collection.title }}
+        </h1>
+        {%- if section.settings.show_collection_description and collection.description != blank -%}
+          <div class="mt-3 text-slate-600 text-base leading-relaxed">
+            {{ collection.description }}
+          </div>
+        {%- endif -%}
+      </div>
+
+      {%- if section.settings.show_collection_image and collection.image -%}
+        <div class="w-full md:w-72 h-44 rounded-2xl overflow-hidden shadow-md flex-shrink-0">
+          <img 
+            src="{{ collection.image | image_url: width: 600 }}" 
+            alt="{{ collection.title | escape }}"
+            class="w-full h-full object-cover"
+            loading="lazy"
+          >
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Collection Banner",
+  "tag": "section",
+  "class": "section-collection-banner",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_collection_description",
+      "label": "Show collection description",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_collection_image",
+      "label": "Show collection hero image",
+      "default": true
+    }
+  ]
+}
+{% endschema %}

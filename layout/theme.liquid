@@ -1,0 +1,146 @@
+<!doctype html>
+<html class="no-js" lang="{{ request.locale.iso_code }}" dir="{% if request.locale.iso_code == 'ar' or request.locale.iso_code == 'he' %}rtl{% else %}ltr{% endif %}">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="{{ settings.color_secondary }}">
+    <link rel="canonical" href="{{ canonical_url }}">
+    <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
+
+    {%- if settings.favicon != blank -%}
+      <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
+    {%- endif -%}
+
+    {%- unless settings.font_heading.system? and settings.font_body.system? -%}
+      <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
+    {%- endunless -%}
+
+    <title>
+      {{ page_title }}
+      {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%}
+      {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif -%}
+      {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
+    </title>
+
+    {% if page_description %}
+      <meta name="description" content="{{ page_description | escape }}">
+    {% endif %}
+
+    {% render 'meta-tags' %}
+
+    {{ content_for_header }}
+
+    {% render 'css-variables' %}
+    {{ 'theme.css' | asset_url | stylesheet_tag }}
+
+    <!-- Tailwind Play CDN fallback for instant Shopify admin preview & live editor support -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: {
+                navy: 'var(--color-primary, #15202B)',
+                aqua: 'var(--color-secondary, #00C2CB)',
+                yellow: 'var(--color-accent, #FFD000)',
+                coral: '#FF6B6B'
+              }
+            }
+          }
+        }
+      };
+    </script>
+    <style>
+      :root {
+        --color-primary: {{ settings.color_primary | default: '#15202B' }};
+        --color-secondary: {{ settings.color_secondary | default: '#00C2CB' }};
+        --color-accent: {{ settings.color_accent | default: '#FBBF24' }};
+        --color-bg: {{ settings.color_background | default: '#FFFFFF' }};
+        --color-surface: {{ settings.color_surface | default: '#F8FAFC' }};
+        --color-headings: {{ settings.color_headings | default: '#0F172A' }};
+        --color-body-text: {{ settings.color_body_text | default: '#334155' }};
+        --color-btn-bg: {{ settings.color_button_bg | default: '#00C2CB' }};
+        --color-btn-text: {{ settings.color_button_text | default: '#FFFFFF' }};
+        --color-btn-hover: {{ settings.color_button_hover | default: '#0891B2' }};
+        --card-radius: {{ settings.card_radius | default: 16 }}px;
+        --btn-radius: {{ settings.button_radius | default: 24 }}px;
+        --page-width: {{ settings.page_width | default: 1320 }}px;
+      }
+      .bg-cyan-500, .bg-cyan-600 { background-color: var(--color-btn-bg, var(--color-secondary, #00C2CB)) !important; }
+      .hover\:bg-cyan-600:hover, .hover\:bg-cyan-700:hover { filter: brightness(0.92); }
+      .text-cyan-600, .text-cyan-500 { color: var(--color-secondary, #00C2CB) !important; }
+      .border-cyan-500, .border-cyan-400 { border-color: var(--color-secondary, #00C2CB) !important; }
+      .bg-amber-400, .bg-amber-500 { background-color: var(--color-accent, #FBBF24) !important; }
+      .text-amber-400, .text-amber-500 { color: var(--color-accent, #FBBF24) !important; }
+      .rounded-2xl { border-radius: var(--card-radius, 16px) !important; }
+      .rounded-full.sald-btn, button.rounded-full, a.rounded-full { border-radius: var(--btn-radius, 24px) !important; }
+      .max-w-\[var\(--page-width\)\] { max-width: var(--page-width, 1320px) !important; }
+      /* Glassmorphism Styling & Blur Support */
+      .backdrop-blur-2xl {
+        -webkit-backdrop-filter: blur(24px) saturate(160%);
+        backdrop-filter: blur(24px) saturate(160%);
+      }
+      .backdrop-blur-xl {
+        -webkit-backdrop-filter: blur(16px);
+        backdrop-filter: blur(16px);
+      }
+      .backdrop-blur-md {
+        -webkit-backdrop-filter: blur(12px);
+        backdrop-filter: blur(12px);
+      }
+      .sr-only, .skip-to-content-link:not(:focus) {
+        position: absolute !important;
+        width: 1px !important;
+        height: 1px !important;
+        padding: 0 !important;
+        margin: -1px !important;
+        overflow: hidden !important;
+        clip: rect(0, 0, 0, 0) !important;
+        white-space: nowrap !important;
+        border: 0 !important;
+      }
+      .sald-header svg { max-height: 48px; }
+      img, svg, video { max-width: 100%; }
+    </style>
+
+    <script>
+      document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+      window.SALD = {
+        moneyFormat: {{ shop.money_format | json }},
+        cartType: {{ settings.cart_type | json }},
+        freeShippingThreshold: {{ settings.free_shipping_threshold | default: 75 | json }},
+        strings: {
+          addToCart: {{ 'products.product.add_to_cart' | t | json }},
+          soldOut: {{ 'products.product.sold_out' | t | json }},
+          unavailable: {{ 'products.product.unavailable' | t | json }}
+        }
+      };
+    </script>
+  </head>
+
+  <body class="sald-theme template-{{ template.name }} font-body bg-body text-body antialiased selection:bg-cyan-200">
+    <a class="skip-to-content-link sr-only focus:not-sr-only focus:absolute focus:z-50 focus:p-4 focus:bg-white focus:text-slate-900" href="#MainContent">
+      {{ 'general.skip_to_content' | t }}
+    </a>
+
+    {% section 'announcement-bar' %}
+    {% section 'header' %}
+
+    <main id="MainContent" class="content-for-layout focus:none" role="main" tabindex="-1">
+      {{ content_for_layout }}
+    </main>
+
+    {% section 'footer' %}
+
+    {%- if settings.cart_type == 'drawer' -%}
+      {% render 'cart-drawer' %}
+    {%- endif -%}
+
+    {% render 'search-drawer' %}
+    {% render 'quick-view-modal' %}
+
+    <script src="{{ 'theme.js' | asset_url }}" defer="defer"></script>
+  </body>
+</html>

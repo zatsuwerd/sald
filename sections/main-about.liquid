@@ -1,0 +1,99 @@
+<div class="main-about-section py-12 md:py-20 bg-white">
+  <div class="page-width mx-auto px-4 md:px-8 max-w-5xl">
+    
+    <!-- Hero Header -->
+    <div class="text-center max-w-3xl mx-auto mb-14">
+      <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-black tracking-wider uppercase bg-cyan-50 text-cyan-700 border border-cyan-200/80 mb-4">
+        {{ section.settings.badge | default: 'Our Story & Philosophy' }}
+      </span>
+      <h1 class="text-3xl md:text-5xl font-black text-slate-900 tracking-tight leading-tight">
+        {{ section.settings.title | default: 'Built for Sun-Drenched Play & Unforgettable Summer Memories' }}
+      </h1>
+      <p class="mt-4 text-base md:text-lg text-slate-600 leading-relaxed">
+        {{ section.settings.subtitle | default: 'At SALD, we engineer heavy-duty aquatic sports equipment and backyard lawn games designed to get families outdoors, active, and laughing together.' }}
+      </p>
+    </div>
+
+    <!-- 3 Core Pillars -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+      <div class="p-6 rounded-3xl bg-slate-50 border border-slate-100 flex flex-col justify-between">
+        <div>
+          <div class="w-12 h-12 rounded-2xl bg-cyan-500/10 text-cyan-600 flex items-center justify-center font-black text-xl mb-4">
+            01
+          </div>
+          <h3 class="text-lg font-black text-slate-900 mb-2">Marine-Grade Polymers</h3>
+          <p class="text-sm text-slate-600 leading-relaxed">
+            Every hoop, net, and float is crafted with UV-stabilized, chlorine-resistant materials that never brittle, fade, or snap under the summer sun.
+          </p>
+        </div>
+      </div>
+
+      <div class="p-6 rounded-3xl bg-slate-50 border border-slate-100 flex flex-col justify-between">
+        <div>
+          <div class="w-12 h-12 rounded-2xl bg-amber-500/10 text-amber-600 flex items-center justify-center font-black text-xl mb-4">
+            02
+          </div>
+          <h3 class="text-lg font-black text-slate-900 mb-2">100% Child-Safe</h3>
+          <p class="text-sm text-slate-600 leading-relaxed">
+            Non-toxic, BPA-free, and independently laboratory tested to exceed global child toy and aquatic recreation safety benchmarks.
+          </p>
+        </div>
+      </div>
+
+      <div class="p-6 rounded-3xl bg-slate-50 border border-slate-100 flex flex-col justify-between">
+        <div>
+          <div class="w-12 h-12 rounded-2xl bg-emerald-500/10 text-emerald-600 flex items-center justify-center font-black text-xl mb-4">
+            03
+          </div>
+          <h3 class="text-lg font-black text-slate-900 mb-2">Active Family Bonding</h3>
+          <p class="text-sm text-slate-600 leading-relaxed">
+            From cross-pool volleyball battles to lawn tumble tournaments, our gear transforms screens time into genuine laughter and active play.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Founder Callout -->
+    <div class="p-8 md:p-12 rounded-3xl bg-slate-900 text-white flex flex-col md:flex-row items-center gap-8 shadow-xl">
+      <div class="flex-1">
+        <span class="text-xs uppercase font-extrabold tracking-widest text-cyan-400 block mb-2">The SALD Commitment</span>
+        <h2 class="text-2xl md:text-3xl font-black mb-4">The 30-Day Splash Guarantee</h2>
+        <p class="text-slate-300 text-sm md:text-base leading-relaxed mb-6">
+          If your family doesn't fall in love with our games from the first pool day, return it within 30 days for a complete, hassle-free refund. We stand behind every seam, net, and rim.
+        </p>
+        <a href="{{ routes.all_products_collection_url }}" class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-cyan-500 hover:bg-cyan-600 text-white font-extrabold text-sm transition-all shadow-md">
+          Explore All Games &rarr;
+        </a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "About Us Content",
+  "tag": "section",
+  "class": "section-main-about",
+  "settings": [
+    {
+      "type": "text",
+      "id": "badge",
+      "label": "Eyebrow Badge",
+      "default": "Our Story & Philosophy"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading Title",
+      "default": "Built for Sun-Drenched Play & Unforgettable Summer Memories"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle Paragraph",
+      "default": "At SALD, we engineer heavy-duty aquatic sports equipment and backyard lawn games designed to get families outdoors, active, and laughing together."
+    }
+  ]
+}
+{% endschema %}

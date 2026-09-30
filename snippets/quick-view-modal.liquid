@@ -1,0 +1,13 @@
+<div id="QuickViewModal" class="fixed inset-0 z-50 overflow-y-auto pointer-events-none opacity-0 transition-opacity duration-200" aria-hidden="true" role="dialog">
+  <div class="fixed inset-0 bg-slate-900/70 backdrop-blur-sm" data-quickview-close></div>
+  <div class="min-h-full flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl shadow-2xl max-w-3xl w-full p-6 sm:p-8 pointer-events-auto relative transform scale-95 transition-transform duration-200" data-quickview-content>
+      <button type="button" class="absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-800 rounded-full" data-quickview-close aria-label="Close modal">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+      <div id="QuickViewBody">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+  </div>
+</div>

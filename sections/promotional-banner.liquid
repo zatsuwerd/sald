@@ -1,0 +1,88 @@
+<section class="sald-promo-banner relative overflow-hidden py-16 lg:py-20" 
+  style="background-color: {{ section.settings.bg_color | default: '#00C2CB' }}; color: {{ section.settings.text_color | default: '#FFFFFF' }};"
+  data-section-id="{{ section.id }}">
+  
+  <!-- Wave background accents -->
+  <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none"></div>
+
+  <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    {%- if section.settings.eyebrow != blank -%}
+      <span class="inline-block px-3 py-1 rounded-full bg-black/20 text-white font-black text-xs uppercase tracking-widest mb-4">
+        {{ section.settings.eyebrow }}
+      </span>
+    {%- endif -%}
+
+    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight mb-4">
+      {{ section.settings.heading }}
+    </h2>
+
+    {%- if section.settings.text != blank -%}
+      <p class="text-base sm:text-xl font-medium opacity-90 max-w-2xl mx-auto mb-8">
+        {{ section.settings.text }}
+      </p>
+    {%- endif -%}
+
+    {%- if section.settings.button_label != blank -%}
+      <a href="{{ section.settings.button_link | default: '/collections/all' }}" 
+         class="inline-flex items-center justify-center px-8 py-4 bg-slate-900 hover:bg-slate-800 text-white font-extrabold text-base rounded-full shadow-xl transition-transform hover:scale-105">
+        {{ section.settings.button_label }}
+        <svg class="w-5 h-5 ml-2 rtl:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Promotional Banner",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow tag",
+      "default": "LIMITED TIME OFFER"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Summer Splash Days: Take 20% Off All Pool Games"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Text",
+      "default": "Upgrade your swimming pool entertainment before hot summer weekends sell out."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Shop Splash Sale"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#00C2CB"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#FFFFFF"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Promotional Banner",
+      "category": "Promo"
+    }
+  ]
+}
+{% endschema %}

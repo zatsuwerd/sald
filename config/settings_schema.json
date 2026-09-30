@@ -1,0 +1,504 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "SALD - Outdoor & Pool Games",
+    "theme_version": "2.0.0",
+    "theme_author": "SALD Studio",
+    "theme_documentation_url": "https://sald-store.com/docs",
+    "theme_support_url": "https://sald-store.com/support"
+  },
+  {
+    "name": "Brand",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo image"
+      },
+      {
+        "type": "image_picker",
+        "id": "logo_transparent",
+        "label": "Transparent header logo"
+      },
+      {
+        "type": "range",
+        "id": "logo_width",
+        "min": 80,
+        "max": 280,
+        "step": 10,
+        "unit": "px",
+        "label": "Logo width desktop",
+        "default": 140
+      },
+      {
+        "type": "range",
+        "id": "logo_width_mobile",
+        "min": 60,
+        "max": 180,
+        "step": 5,
+        "unit": "px",
+        "label": "Logo width mobile",
+        "default": 110
+      },
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon image"
+      },
+      {
+        "type": "text",
+        "id": "brand_tagline",
+        "label": "Brand tagline",
+        "default": "Outdoor & Pool Games for Active Family Fun"
+      }
+    ]
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      {
+        "type": "color",
+        "id": "color_primary",
+        "label": "Primary color (Dark Charcoal / Blue-Gray)",
+        "default": "#15202B"
+      },
+      {
+        "type": "color",
+        "id": "color_secondary",
+        "label": "Secondary color (Aqua / Pool Cyan)",
+        "default": "#00C2CB"
+      },
+      {
+        "type": "color",
+        "id": "color_accent",
+        "label": "Accent color (Warm Yellow / Sunshine)",
+        "default": "#FBBF24"
+      },
+      {
+        "type": "color",
+        "id": "color_background",
+        "label": "Page background",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "color",
+        "id": "color_surface",
+        "label": "Card & Surface background",
+        "default": "#F8FAFC"
+      },
+      {
+        "type": "color",
+        "id": "color_headings",
+        "label": "Headings color",
+        "default": "#0F172A"
+      },
+      {
+        "type": "color",
+        "id": "color_body_text",
+        "label": "Body text color",
+        "default": "#334155"
+      },
+      {
+        "type": "color",
+        "id": "color_button_bg",
+        "label": "Primary button background",
+        "default": "#00C2CB"
+      },
+      {
+        "type": "color",
+        "id": "color_button_text",
+        "label": "Primary button text",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "color",
+        "id": "color_button_hover",
+        "label": "Primary button hover background",
+        "default": "#0891B2"
+      },
+      {
+        "type": "color",
+        "id": "color_badge_sale",
+        "label": "Sale badge color",
+        "default": "#F59E0B"
+      },
+      {
+        "type": "color",
+        "id": "color_border",
+        "label": "Border & Divider color",
+        "default": "#E2E8F0"
+      },
+      {
+        "type": "color",
+        "id": "color_announcement_bg",
+        "label": "Announcement bar background",
+        "default": "#15202B"
+      },
+      {
+        "type": "color",
+        "id": "color_announcement_text",
+        "label": "Announcement bar text",
+        "default": "#FFFFFF"
+      }
+    ]
+  },
+  {
+    "name": "Typography",
+    "settings": [
+      {
+        "type": "font_picker",
+        "id": "font_heading",
+        "label": "Heading font",
+        "default": "assistant_n4"
+      },
+      {
+        "type": "font_picker",
+        "id": "font_body",
+        "label": "Body font",
+        "default": "assistant_n4"
+      },
+      {
+        "type": "range",
+        "id": "heading_scale",
+        "min": 90,
+        "max": 130,
+        "step": 5,
+        "unit": "%",
+        "label": "Heading scale factor",
+        "default": 105
+      },
+      {
+        "type": "range",
+        "id": "body_scale",
+        "min": 90,
+        "max": 115,
+        "step": 5,
+        "unit": "%",
+        "label": "Body text scale factor",
+        "default": 100
+      }
+    ]
+  },
+  {
+    "name": "Layout",
+    "settings": [
+      {
+        "type": "range",
+        "id": "page_width",
+        "min": 1000,
+        "max": 1500,
+        "step": 20,
+        "unit": "px",
+        "label": "Maximum page width",
+        "default": 1320
+      },
+      {
+        "type": "range",
+        "id": "card_radius",
+        "min": 0,
+        "max": 28,
+        "step": 2,
+        "unit": "px",
+        "label": "Card corner radius",
+        "default": 16
+      },
+      {
+        "type": "range",
+        "id": "button_radius",
+        "min": 0,
+        "max": 40,
+        "step": 2,
+        "unit": "px",
+        "label": "Button corner radius",
+        "default": 24
+      }
+    ]
+  },
+  {
+    "name": "Product Cards",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "card_show_vendor",
+        "label": "Show vendor name",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "card_show_rating",
+        "label": "Show star rating",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "card_show_sale_badge",
+        "label": "Show sale & new badge",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "card_enable_quick_add",
+        "label": "Enable 1-Click Quick Add",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "card_enable_quick_view",
+        "label": "Enable Quick View Modal",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "card_show_secondary_image",
+        "label": "Show secondary image on hover",
+        "default": true
+      },
+      {
+        "type": "select",
+        "id": "card_image_ratio",
+        "label": "Image aspect ratio",
+        "options": [
+          { "value": "square", "label": "Square (1:1)" },
+          { "value": "portrait", "label": "Portrait (3:4)" },
+          { "value": "landscape", "label": "Landscape (4:3)" }
+        ],
+        "default": "square"
+      }
+    ]
+  },
+  {
+    "name": "Cart Drawer & Shipping",
+    "settings": [
+      {
+        "type": "select",
+        "id": "cart_type",
+        "label": "Cart display type",
+        "options": [
+          { "value": "drawer", "label": "Slide-out Drawer (Recommended)" },
+          { "value": "page", "label": "Standalone Cart Page" }
+        ],
+        "default": "drawer"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_free_shipping_bar",
+        "label": "Enable free shipping threshold bar",
+        "default": true
+      },
+      {
+        "type": "range",
+        "id": "free_shipping_threshold",
+        "min": 25,
+        "max": 200,
+        "step": 5,
+        "unit": "$",
+        "label": "Free shipping threshold amount ($)",
+        "default": 75
+      },
+      {
+        "type": "text",
+        "id": "free_shipping_text",
+        "label": "Progress message",
+        "default": "Add [amount] more to unlock FREE Express Delivery!"
+      },
+      {
+        "type": "text",
+        "id": "free_shipping_unlocked_text",
+        "label": "Success message",
+        "default": "🎉 Congratulations! You have unlocked FREE Express Delivery!"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_cart_notes",
+        "label": "Enable order notes in cart",
+        "default": true
+      }
+    ]
+  },
+  {
+    "name": "Social Media",
+    "settings": [
+      {
+        "type": "text",
+        "id": "social_instagram_link",
+        "label": "Instagram URL",
+        "default": "https://instagram.com/sald.outdoor"
+      },
+      {
+        "type": "text",
+        "id": "social_tiktok_link",
+        "label": "TikTok URL",
+        "default": "https://tiktok.com/@sald_fun"
+      },
+      {
+        "type": "text",
+        "id": "social_facebook_link",
+        "label": "Facebook URL"
+      },
+      {
+        "type": "text",
+        "id": "social_youtube_link",
+        "label": "YouTube URL"
+      }
+    ]
+  },
+  {
+    "name": "Header Options",
+    "settings": [
+      {
+        "type": "select",
+        "id": "header_layout",
+        "label": "Header navigation layout",
+        "options": [
+          { "value": "logo_left_menu_center", "label": "Logo Left, Menu Center" },
+          { "value": "logo_left_menu_left", "label": "Logo Left, Menu Left" },
+          { "value": "logo_center_menu_split", "label": "Logo Center, Split Menu" },
+          { "value": "logo_center_menu_stacked", "label": "Logo Center, Menu Below (Stacked)" }
+        ],
+        "default": "logo_left_menu_center"
+      },
+      {
+        "type": "checkbox",
+        "id": "header_sticky",
+        "label": "Enable sticky header on scroll",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "header_transparent_home",
+        "label": "Enable transparent overlay header on hero",
+        "default": false
+      },
+      {
+        "type": "color",
+        "id": "header_bg_color",
+        "label": "Header background color",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "color",
+        "id": "header_text_color",
+        "label": "Header text and navigation links",
+        "default": "#0F172A"
+      },
+      {
+        "type": "checkbox",
+        "id": "header_border_bottom",
+        "label": "Show subtle bottom divider border",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "header_show_search",
+        "label": "Show quick search bar icon",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "header_show_cart_count",
+        "label": "Show cart item badge",
+        "default": true
+      },
+      {
+        "type": "select",
+        "id": "header_drawer_style",
+        "label": "Mobile drawer visual style",
+        "options": [
+          { "value": "glassmorphism", "label": "Full Glassmorphism with Frosted Glow" },
+          { "value": "frosted", "label": "Soft Frosted Glass" },
+          { "value": "solid", "label": "Clean Solid Minimal" }
+        ],
+        "default": "glassmorphism"
+      }
+    ]
+  },
+  {
+    "name": "Footer Options",
+    "settings": [
+      {
+        "type": "color",
+        "id": "footer_bg_color",
+        "label": "Footer background color",
+        "default": "#0F172A"
+      },
+      {
+        "type": "color",
+        "id": "footer_text_color",
+        "label": "Footer body text color",
+        "default": "#94A3B8"
+      },
+      {
+        "type": "color",
+        "id": "footer_heading_color",
+        "label": "Footer heading titles color",
+        "default": "#22D3EE"
+      },
+      {
+        "type": "color",
+        "id": "footer_accent_color",
+        "label": "Footer badge & accent color",
+        "default": "#FBBF24"
+      },
+      {
+        "type": "checkbox",
+        "id": "footer_show_newsletter",
+        "label": "Show newsletter subscription club",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "footer_newsletter_heading",
+        "label": "Newsletter heading",
+        "default": "Join the Summer Splash Club"
+      },
+      {
+        "type": "textarea",
+        "id": "footer_newsletter_subtext",
+        "label": "Newsletter subtext",
+        "default": "Get 15% off your first order, exclusive tournament rules, and pool maintenance tips."
+      },
+      {
+        "type": "checkbox",
+        "id": "footer_show_social",
+        "label": "Show social media links",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "footer_show_pledge",
+        "label": "Show SALD quality pledge card",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "footer_pledge_title",
+        "label": "Pledge card title",
+        "default": "The SALD 1-Year Splash Pledge"
+      },
+      {
+        "type": "textarea",
+        "id": "footer_pledge_text",
+        "label": "Pledge card text",
+        "default": "If your equipment shows chlorine corrosion or UV fade within 1 year, we replace it instantly."
+      },
+      {
+        "type": "checkbox",
+        "id": "footer_show_payment_icons",
+        "label": "Show trust payment provider badges",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "footer_copyright_text",
+        "label": "Copyright text",
+        "default": "SALD Outdoor & Pool Games. Engineered for active families."
+      },
+      {
+        "type": "checkbox",
+        "id": "footer_show_back_to_top",
+        "label": "Show floating back to top button",
+        "default": true
+      }
+    ]
+  }
+]

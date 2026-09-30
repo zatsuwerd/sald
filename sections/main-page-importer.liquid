@@ -1,0 +1,52 @@
+<div class="main-importer-section py-12 md:py-20 bg-slate-900 text-white">
+  <div class="page-width mx-auto px-4 md:px-8 max-w-5xl">
+    <div class="text-center max-w-3xl mx-auto mb-12">
+      <span class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs font-black tracking-wider uppercase bg-cyan-500/20 text-cyan-300 border border-cyan-400/30 mb-4">
+        Shopify OS 2.0 Assistant
+      </span>
+      <h1 class="text-3xl md:text-5xl font-black tracking-tight text-white mb-4">
+        {{ section.settings.title | default: 'SALD Theme Pages & Setup Importer' }}
+      </h1>
+      <p class="text-slate-300 text-sm md:text-base">
+        {{ section.settings.subtitle | default: 'All custom Online Store 2.0 JSON templates are pre-installed in your theme package.' }}
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="p-6 rounded-3xl bg-slate-800/80 border border-slate-700/80 space-y-3">
+        <h3 class="font-extrabold text-lg text-cyan-400">Pre-Configured Pages</h3>
+        <p class="text-xs text-slate-300">When creating pages in Shopify Admin > Online Store > Pages, select the matching <strong>Theme template</strong> from the dropdown:</p>
+        <ul class="text-xs text-slate-200 space-y-2">
+          <li>• <strong>About Us:</strong> template <code class="bg-slate-900 px-1.5 py-0.5 rounded text-cyan-300">page.about</code></li>
+          <li>• <strong>Contact Us:</strong> template <code class="bg-slate-900 px-1.5 py-0.5 rounded text-cyan-300">page.contact</code></li>
+          <li>• <strong>FAQ &amp; Help:</strong> template <code class="bg-slate-900 px-1.5 py-0.5 rounded text-cyan-300">page.faq</code></li>
+          <li>• <strong>Policies:</strong> template <code class="bg-slate-900 px-1.5 py-0.5 rounded text-cyan-300">page.policies</code></li>
+          <li>• <strong>Shipping:</strong> template <code class="bg-slate-900 px-1.5 py-0.5 rounded text-cyan-300">page.shipping</code></li>
+          <li>• <strong>Warranty:</strong> template <code class="bg-slate-900 px-1.5 py-0.5 rounded text-cyan-300">page.warranty</code></li>
+          <li>• <strong>Returns:</strong> template <code class="bg-slate-900 px-1.5 py-0.5 rounded text-cyan-300">page.returns</code></li>
+        </ul>
+      </div>
+
+      <div class="p-6 rounded-3xl bg-slate-800/80 border border-slate-700/80 space-y-3">
+        <h3 class="font-extrabold text-lg text-amber-400">Live Customizer Editing</h3>
+        <p class="text-xs text-slate-300">Each page template supports drag-and-drop section customization directly in the Shopify Theme Editor (Customize button in Shopify admin).</p>
+        <div class="pt-2">
+          <a href="{{ routes.root_url }}" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-black text-xs transition-all">
+            <span>Return to Store Home</span>
+            <span>&rarr;</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Page Importer Content",
+  "settings": [
+    { "type": "text", "id": "title", "label": "Heading", "default": "SALD Theme Pages & Setup Importer" },
+    { "type": "textarea", "id": "subtitle", "label": "Subtitle", "default": "All custom Online Store 2.0 JSON templates are pre-installed." }
+  ]
+}
+{% endschema %}

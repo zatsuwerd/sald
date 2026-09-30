@@ -1,0 +1,265 @@
+{%- liquid
+  assign video_exists = false
+  if section.settings.video != blank or section.settings.video_url != blank
+    assign video_exists = true
+  endif
+-%}
+
+{%- style -%}
+  .section-{{ section.id }}-hero {
+    min-height: {{ section.settings.hero_height_mobile | default: 520 }}px;
+  }
+  @media screen and (min-width: 768px) {
+    .section-{{ section.id }}-hero {
+      min-height: {{ section.settings.hero_height_desktop | default: 680 }}px;
+    }
+  }
+{%- endstyle -%}
+
+<section class="sald-video-hero section-{{ section.id }}-hero relative overflow-hidden bg-slate-950 text-white flex items-center justify-center" 
+  data-section-id="{{ section.id }}"
+  data-section-type="video-hero">
+  
+  <!-- Media Container: Native Shopify-hosted video / External video / Fallback image -->
+  <div class="absolute inset-0 w-full h-full overflow-hidden pointer-events-none">
+    {%- if section.settings.video != blank -%}
+      {{ section.settings.video | video_tag: 
+         autoplay: section.settings.autoplay, 
+         loop: section.settings.loop, 
+         muted: section.settings.muted, 
+         controls: false, 
+         playsinline: true,
+         class: 'w-full h-full object-cover' 
+      }}
+    {%- elsif section.settings.video_url != blank -%}
+      {%- if section.settings.video_url.type == 'youtube' -%}
+        <iframe class="w-full h-full object-cover pointer-events-none scale-125"
+          src="https://www.youtube.com/embed/{{ section.settings.video_url.id }}?autoplay=1&mute=1&loop=1&playlist={{ section.settings.video_url.id }}&controls=0&showinfo=0&rel=0&playsinline=1"
+          frameborder="0" allow="autoplay; encrypted-media" allowfullscreen title="SALD Outdoor Video"></iframe>
+      {%- elsif section.settings.video_url.type == 'vimeo' -%}
+        <iframe class="w-full h-full object-cover pointer-events-none scale-125"
+          src="https://player.vimeo.com/video/{{ section.settings.video_url.id }}?autoplay=1&muted=1&loop=1&autopause=0&background=1&playsinline=1"
+          frameborder="0" allow="autoplay; fullscreen" allowfullscreen title="SALD Outdoor Video"></iframe>
+      {%- endif -%}
+    {%- elsif section.settings.fallback_image != blank -%}
+      <img src="{{ section.settings.fallback_image | image_url: width: 2400 }}" 
+           alt="{{ section.settings.heading | escape }}" 
+           class="w-full h-full object-cover" 
+           loading="eager" width="2400" height="1350">
+    {%- else -%}
+      <!-- Default High-Fidelity Outdoor Pool Graphic Hero with Fallback Poster -->
+      <div class="absolute inset-0 bg-gradient-to-tr from-slate-950 via-slate-900 to-cyan-950">
+        <img src="https://images.unsplash.com/photo-1533240332313-0db49b459ad6?q=80&w=1600&auto=format&fit=crop"
+             alt="SALD Outdoor Pool Fun"
+             class="absolute inset-0 w-full h-full object-cover opacity-50"
+             loading="eager">
+        <div class="absolute inset-0 opacity-20 bg-[radial-gradient(#00C2CB_1px,transparent_1px)] [background-size:24px_24px]"></div>
+      </div>
+    {%- endif -%}
+  </div>
+
+  <!-- Configurable Dark / Brand Tint Overlay -->
+  <div class="absolute inset-0 transition-opacity pointer-events-none" 
+       style="background: {{ section.settings.overlay_color | default: '#0F172A' }}; opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }};"></div>
+
+  <!-- Hero Content Area with Mobile Responsiveness -->
+  <div class="relative z-10 w-full max-w-[var(--page-width)] mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-20 lg:py-28 flex flex-col items-center justify-center">
+    <div class="w-full max-w-2xl {% if section.settings.content_alignment == 'center' %}mx-auto text-center{% elsif section.settings.content_alignment == 'right' %}ml-auto text-right{% else %}text-left{% endif %}">
+      
+      <!-- Eyebrow Badge -->
+      {%- if section.settings.eyebrow != blank -%}
+        <div class="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1 sm:py-1.5 rounded-full bg-cyan-500/20 border border-cyan-400/40 text-cyan-300 font-black text-[10px] sm:text-xs uppercase tracking-wider sm:tracking-widest mb-4 sm:mb-6 backdrop-blur-md shadow-sm">
+          <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-amber-400 animate-pulse"></span>
+          {{ section.settings.eyebrow }}
+        </div>
+      {%- endif -%}
+
+      <!-- Main Headline -->
+      <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-white leading-[1.12] sm:leading-[1.08] mb-4 sm:mb-6 drop-shadow-md break-words">
+        {{ section.settings.heading }}
+      </h1>
+
+      <!-- Description Subtext -->
+      {%- if section.settings.description != blank -%}
+        <p class="text-sm sm:text-base lg:text-lg text-slate-200/90 font-medium leading-relaxed mb-6 sm:mb-8 max-w-xl mx-auto px-2 {% if section.settings.content_alignment == 'center' %}mx-auto{% endif %}">
+          {{ section.settings.description }}
+        </p>
+      {%- endif -%}
+
+      <!-- Action Buttons - Stacked on Mobile, Inline on Desktop -->
+      <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 w-full max-w-xs sm:max-w-none mx-auto {% if section.settings.content_alignment == 'center' %}sm:justify-center{% elsif section.settings.content_alignment == 'right' %}sm:justify-end{% else %}sm:justify-start{% endif %}">
+        {%- if section.settings.button_primary_label != blank -%}
+          <a href="{{ section.settings.button_primary_link | default: routes.all_products_collection_url }}" 
+             class="w-full sm:w-auto inline-flex items-center justify-center px-6 sm:px-8 py-3.5 sm:py-4 text-sm sm:text-base font-extrabold text-white bg-cyan-500 hover:bg-cyan-600 rounded-full shadow-lg shadow-cyan-500/30 transition-all active:scale-95 sm:hover:scale-[1.03]">
+            <span>{{ section.settings.button_primary_label }}</span>
+            <svg class="w-4 h-4 sm:w-5 sm:h-5 ml-2 rtl:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        {%- endif -%}
+
+        {%- if section.settings.button_secondary_label != blank -%}
+          <a href="{{ section.settings.button_secondary_link | default: '#categories' }}" 
+             class="w-full sm:w-auto inline-flex items-center justify-center px-6 sm:px-8 py-3.5 sm:py-4 text-sm sm:text-base font-bold text-white bg-white/10 hover:bg-white/20 border border-white/25 rounded-full backdrop-blur-md transition-all active:scale-95 sm:hover:scale-[1.02]">
+            <span>{{ section.settings.button_secondary_label }}</span>
+          </a>
+        {%- endif -%}
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Subtle bottom wave decorative divider -->
+  <div class="absolute bottom-0 inset-x-0 pointer-events-none">
+    <svg class="w-full text-white h-5 sm:h-8 md:h-14" viewBox="0 0 1440 80" fill="currentColor" preserveAspectRatio="none">
+      <path d="M0,32L80,42.7C160,53,320,75,480,69.3C640,64,800,32,960,26.7C1120,21,1280,43,1360,53.3L1440,64L1440,80L1360,80C1280,80,1120,80,960,80C800,80,640,80,480,80C320,80,160,80,80,80L0,80Z"></path>
+    </svg>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Video Hero",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Video Media"
+    },
+    {
+      "type": "video",
+      "id": "video",
+      "label": "Shopify-hosted video",
+      "info": "Upload or select video from your Shopify admin files"
+    },
+    {
+      "type": "video_url",
+      "id": "video_url",
+      "label": "External video URL",
+      "accept": ["youtube", "vimeo"],
+      "info": "Used as fallback if no Shopify-hosted video selected"
+    },
+    {
+      "type": "image_picker",
+      "id": "fallback_image",
+      "label": "Fallback / poster image"
+    },
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "Autoplay video",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "muted",
+      "label": "Mute video audio",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "loop",
+      "label": "Loop video",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Content & Typography"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow tag",
+      "default": "PLAY • SPLASH • ENJOY"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Main headline",
+      "default": "Make Every Outdoor Moment More Fun"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description text",
+      "default": "Discover pool games, playground fun and outdoor games designed for unforgettable family moments."
+    },
+    {
+      "type": "text",
+      "id": "button_primary_label",
+      "label": "Primary button label",
+      "default": "Shop Best Sellers"
+    },
+    {
+      "type": "url",
+      "id": "button_primary_link",
+      "label": "Primary button link"
+    },
+    {
+      "type": "text",
+      "id": "button_secondary_label",
+      "label": "Secondary button label",
+      "default": "Explore Categories"
+    },
+    {
+      "type": "url",
+      "id": "button_secondary_link",
+      "label": "Secondary button link"
+    },
+    {
+      "type": "header",
+      "content": "Layout & Styling"
+    },
+    {
+      "type": "select",
+      "id": "content_alignment",
+      "label": "Text alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "min": 0,
+      "max": 90,
+      "step": 5,
+      "unit": "%",
+      "label": "Video overlay strength",
+      "default": 35
+    },
+    {
+      "type": "color",
+      "id": "overlay_color",
+      "label": "Overlay tint color",
+      "default": "#0F172A"
+    },
+    {
+      "type": "range",
+      "id": "hero_height_desktop",
+      "min": 500,
+      "max": 900,
+      "step": 20,
+      "unit": "px",
+      "label": "Hero minimum height desktop",
+      "default": 680
+    },
+    {
+      "type": "range",
+      "id": "hero_height_mobile",
+      "min": 380,
+      "max": 650,
+      "step": 20,
+      "unit": "px",
+      "label": "Hero minimum height mobile",
+      "default": 520
+    }
+  ],
+  "presets": [
+    {
+      "name": "Video Hero",
+      "category": "Hero"
+    }
+  ]
+}
+{% endschema %}

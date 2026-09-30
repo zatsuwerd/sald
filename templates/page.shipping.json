@@ -1,0 +1,14 @@
+{
+  "sections": {
+    "main_shipping": {
+      "type": "main-shipping",
+      "settings": {
+        "title": "Express Shipping & Global Delivery",
+        "subtitle": "Fast warehouse fulfillment with free 2-4 day express delivery over $75."
+      }
+    }
+  },
+  "order": [
+    "main_shipping"
+  ]
+}

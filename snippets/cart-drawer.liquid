@@ -1,0 +1,52 @@
+<div id="CartDrawer" class="sald-cart-drawer fixed inset-0 z-50 overflow-hidden pointer-events-none transition-opacity duration-300 opacity-0" aria-hidden="true" role="dialog" aria-modal="true">
+  <!-- Backdrop -->
+  <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm transition-opacity" data-cart-close></div>
+
+  <div class="fixed inset-y-0 right-0 max-w-full flex pl-10 rtl:pl-0 rtl:pr-10">
+    <div class="w-screen max-w-md bg-white shadow-2xl flex flex-col pointer-events-auto transform translate-x-full rtl:-translate-x-full transition-transform duration-300 ease-in-out" data-cart-panel>
+      
+      <!-- Drawer Header -->
+      <div class="p-6 border-b border-slate-200 flex items-center justify-between bg-slate-50/80">
+        <div class="flex items-center gap-2">
+          <h2 class="text-lg font-black text-slate-900">{{ 'cart.title' | t | default: 'Your Cart' }}</h2>
+          <span class="bg-cyan-100 text-cyan-800 text-xs font-black px-2 py-0.5 rounded-full" data-cart-drawer-count>{{ cart.item_count | default: 0 }}</span>
+        </div>
+        <button type="button" class="p-2 -m-2 text-slate-400 hover:text-slate-700 rounded-full" data-cart-close aria-label="Close cart">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <!-- Free Shipping Progress Bar -->
+      {%- if settings.enable_free_shipping_bar -%}
+        <div class="px-6 py-3.5 bg-cyan-50 border-b border-cyan-100">
+          <div class="flex items-center justify-between text-xs font-bold text-cyan-900 mb-1.5" data-free-shipping-text>
+            <span>Add $25.00 more for FREE Express Shipping!</span>
+          </div>
+          <div class="w-full h-2 bg-cyan-200/60 rounded-full overflow-hidden">
+            <div class="h-full bg-cyan-500 rounded-full transition-all duration-500" style="width: 65%;" data-free-shipping-progress></div>
+          </div>
+        </div>
+      {%- endif -%}
+
+      <!-- Cart Items List Container -->
+      <div class="flex-1 overflow-y-auto p-6 space-y-4" data-cart-items-container>
+        <!-- Populated via AJAX or Liquid -->
+      </div>
+
+      <!-- Drawer Footer with Subtotal and Checkout -->
+      <div class="p-6 border-t border-slate-200 bg-slate-50/80 space-y-4">
+        <div class="flex items-center justify-between text-base font-extrabold text-slate-900">
+          <span>{{ 'cart.subtotal' | t | default: 'Subtotal' }}</span>
+          <span class="text-cyan-600 text-xl font-black" data-cart-subtotal>{{ cart.total_price | money }}</span>
+        </div>
+        <p class="text-xs text-slate-500 font-medium text-center">Taxes and free shipping calculated at checkout.</p>
+        
+        <a href="/checkout" class="w-full py-4 bg-cyan-500 hover:bg-cyan-600 text-white font-black text-sm rounded-full flex items-center justify-center gap-2 shadow-lg shadow-cyan-500/25 transition-transform hover:scale-[1.01] active:scale-[0.99]">
+          <span>{{ 'cart.checkout' | t | default: 'Proceed to Checkout' }}</span>
+          <svg class="w-4 h-4 rtl:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,101 @@
+<section class="sald-testimonials py-16 lg:py-24 bg-white" data-section-id="{{ section.id }}">
+  <div class="max-w-[var(--page-width)] mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center max-w-2xl mx-auto mb-12">
+      <span class="text-xs font-black uppercase tracking-wider text-amber-500">Verified Reviews</span>
+      <h2 class="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight mt-1">{{ section.settings.heading }}</h2>
+      {%- if section.settings.subtitle != blank -%}
+        <p class="mt-2 text-slate-600 font-medium text-base">{{ section.settings.subtitle }}</p>
+      {%- endif -%}
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {%- for block in section.blocks -%}
+        <div class="p-8 rounded-3xl bg-slate-50 border border-slate-200/80 shadow-sm flex flex-col justify-between" {{ block.shopify_attributes }}>
+          <div>
+            <!-- 5-Star Rating -->
+            <div class="flex items-center text-amber-400 text-lg mb-4">
+              ★★★★★
+            </div>
+            <p class="text-slate-700 text-base font-medium leading-relaxed italic mb-6">
+              "{{ block.settings.quote }}"
+            </p>
+          </div>
+
+          <div class="flex items-center justify-between pt-4 border-t border-slate-200/80">
+            <div>
+              <h4 class="font-extrabold text-slate-900 text-sm">{{ block.settings.author }}</h4>
+              {%- if block.settings.location != blank -%}
+                <span class="text-xs text-slate-500 font-medium">{{ block.settings.location }}</span>
+              {%- endif -%}
+            </div>
+            {%- if block.settings.verified -%}
+              <span class="inline-flex items-center text-[10px] font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full">
+                ✓ Verified Buyer
+              </span>
+            {%- endif -%}
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Testimonials",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Loved by Over 12,000 Families"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subheading",
+      "default": "Real feedback from backyards, pool parties, and vacation homes"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial_item",
+      "name": "Testimonial",
+      "settings": [
+        {
+          "type": "text",
+          "id": "author",
+          "label": "Customer name",
+          "default": "Jessica & Mark T."
+        },
+        {
+          "type": "text",
+          "id": "location",
+          "label": "Location",
+          "default": "Miami, FL"
+        },
+        {
+          "type": "textarea",
+          "id": "quote",
+          "label": "Quote",
+          "default": "The Pro Splash Hoops transformed our pool weekends! The kids have spent hours outside every day instead of being glued to their tablets."
+        },
+        {
+          "type": "checkbox",
+          "id": "verified",
+          "label": "Verified buyer badge",
+          "default": true
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Testimonials",
+      "category": "Social Proof"
+    }
+  ]
+}
+{% endschema %}

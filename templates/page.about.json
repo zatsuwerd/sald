@@ -1,0 +1,15 @@
+{
+  "sections": {
+    "main_about": {
+      "type": "main-about",
+      "settings": {
+        "badge": "Our Story & Philosophy",
+        "title": "Built for Sun-Drenched Play and Lifelong Memories",
+        "subtitle": "Discover how SALD designs professional-grade outdoor and aquatic equipment for active families."
+      }
+    }
+  },
+  "order": [
+    "main_about"
+  ]
+}

@@ -1,0 +1,91 @@
+<div class="main-faq-section py-12 md:py-20 bg-white">
+  <div class="page-width mx-auto px-4 md:px-8 max-w-4xl">
+    
+    <div class="text-center max-w-2xl mx-auto mb-14">
+      <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-black tracking-wider uppercase bg-cyan-50 text-cyan-700 border border-cyan-200/80 mb-3">
+        Got Questions?
+      </span>
+      <h1 class="text-3xl md:text-5xl font-black text-slate-900 tracking-tight">
+        {{ section.settings.title | default: 'Frequently Asked Questions' }}
+      </h1>
+      <p class="mt-3 text-slate-600 text-sm md:text-base">
+        {{ section.settings.subtitle | default: 'Quick answers about materials, water safety, shipping speeds, and return policies.' }}
+      </p>
+    </div>
+
+    <!-- Accordion Q&A Items -->
+    <div class="space-y-4">
+      <details class="group p-5 md:p-6 rounded-2xl bg-slate-50 border border-slate-200/80 cursor-pointer transition-colors open:bg-white open:shadow-md">
+        <summary class="flex items-center justify-between font-extrabold text-base md:text-lg text-slate-900 list-none">
+          <span>Are SALD pool toys safe for chlorine and saltwater pools?</span>
+          <span class="w-6 h-6 rounded-full bg-slate-200 text-slate-600 flex items-center justify-center text-xs group-open:rotate-180 transition-transform">▼</span>
+        </summary>
+        <p class="mt-4 text-sm text-slate-600 leading-relaxed">
+          Yes! All SALD pool products are engineered with heavy-gauge, UV-stabilized, marine-grade PVC and ABS plastics tested against chlorine, bromine, and saltwater corrosion. They will not fade, crack, or peel.
+        </p>
+      </details>
+
+      <details class="group p-5 md:p-6 rounded-2xl bg-slate-50 border border-slate-200/80 cursor-pointer transition-colors open:bg-white open:shadow-md">
+        <summary class="flex items-center justify-between font-extrabold text-base md:text-lg text-slate-900 list-none">
+          <span>How fast is shipping and when do I get free delivery?</span>
+          <span class="w-6 h-6 rounded-full bg-slate-200 text-slate-600 flex items-center justify-center text-xs group-open:rotate-180 transition-transform">▼</span>
+        </summary>
+        <p class="mt-4 text-sm text-slate-600 leading-relaxed">
+          All orders over $75 unlock Free Express Delivery! Orders ship within 24 to 48 business hours with live tracking provided by email and SMS. Typical delivery takes 2 to 4 business days.
+        </p>
+      </details>
+
+      <details class="group p-5 md:p-6 rounded-2xl bg-slate-50 border border-slate-200/80 cursor-pointer transition-colors open:bg-white open:shadow-md">
+        <summary class="flex items-center justify-between font-extrabold text-base md:text-lg text-slate-900 list-none">
+          <span>How does the 30-Day Splash Guarantee work?</span>
+          <span class="w-6 h-6 rounded-full bg-slate-200 text-slate-600 flex items-center justify-center text-xs group-open:rotate-180 transition-transform">▼</span>
+        </summary>
+        <p class="mt-4 text-sm text-slate-600 leading-relaxed">
+          Take your new gear into the pool or backyard for 30 days. If you or your kids aren't totally thrilled, simply reach out to support@sald-outdoor.com for an immediate return label and 100% full refund.
+        </p>
+      </details>
+
+      <details class="group p-5 md:p-6 rounded-2xl bg-slate-50 border border-slate-200/80 cursor-pointer transition-colors open:bg-white open:shadow-md">
+        <summary class="flex items-center justify-between font-extrabold text-base md:text-lg text-slate-900 list-none">
+          <span>Do pool basketball hoops and volleyball nets include balls &amp; pumps?</span>
+          <span class="w-6 h-6 rounded-full bg-slate-200 text-slate-600 flex items-center justify-center text-xs group-open:rotate-180 transition-transform">▼</span>
+        </summary>
+        <p class="mt-4 text-sm text-slate-600 leading-relaxed">
+          Yes! All SALD aquatic sports sets come complete with regulation water-grip balls and an ergonomic rapid hand pump with safety needles, ready for immediate play right out of the box.
+        </p>
+      </details>
+    </div>
+
+    <!-- Need More Help Card -->
+    <div class="mt-12 p-8 rounded-3xl bg-cyan-50 border border-cyan-200 text-center">
+      <h3 class="text-xl font-black text-cyan-950 mb-2">Still Have Questions?</h3>
+      <p class="text-sm text-cyan-800 mb-5">Our product specialists are ready to help you choose the best set for your pool size and family age groups.</p>
+      <a href="/pages/contact" class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-cyan-600 hover:bg-cyan-700 text-white font-extrabold text-sm transition-all shadow-sm">
+        Contact Our Crew &rarr;
+      </a>
+    </div>
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "FAQ Accordion",
+  "tag": "section",
+  "class": "section-main-faq",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Frequently Asked Questions"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Quick answers about materials, water safety, shipping speeds, and return policies."
+    }
+  ]
+}
+{% endschema %}

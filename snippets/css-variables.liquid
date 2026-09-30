@@ -1,0 +1,30 @@
+<style>
+  {%- if settings.font_heading -%}
+    {{ settings.font_heading | font_face: font_display: 'swap' }}
+  {%- endif -%}
+  {%- if settings.font_body -%}
+    {{ settings.font_body | font_face: font_display: 'swap' }}
+    {%- assign font_body_bold = settings.font_body | font_modify: 'weight', 'bold' -%}
+    {%- if font_body_bold -%}
+      {{ font_body_bold | font_face: font_display: 'swap' }}
+    {%- endif -%}
+  {%- endif -%}
+
+  :root {
+    --color-primary: {{ settings.color_primary | default: '#15202B' }};
+    --color-secondary: {{ settings.color_secondary | default: '#00C2CB' }};
+    --color-accent: {{ settings.color_accent | default: '#FBBF24' }};
+    --color-bg: {{ settings.color_background | default: '#FFFFFF' }};
+    --color-surface: {{ settings.color_surface | default: '#F8FAFC' }};
+    --color-headings: {{ settings.color_headings | default: '#0F172A' }};
+    --color-body-text: {{ settings.color_body_text | default: '#334155' }};
+    --color-btn-bg: {{ settings.color_button_bg | default: '#00C2CB' }};
+    --color-btn-text: {{ settings.color_button_text | default: '#FFFFFF' }};
+    --color-btn-hover: {{ settings.color_button_hover | default: '#0891B2' }};
+    --page-width: {{ settings.page_width | default: 1320 }}px;
+    --card-radius: {{ settings.card_radius | default: 16 }}px;
+    --btn-radius: {{ settings.button_radius | default: 24 }}px;
+    --font-heading-family: {% if settings.font_heading %}{{ settings.font_heading.family }}, {{ settings.font_heading.fallback_families }}{% else %}'Plus Jakarta Sans', system-ui, sans-serif{% endif %};
+    --font-body-family: {% if settings.font_body %}{{ settings.font_body.family }}, {{ settings.font_body.fallback_families }}{% else %}'Plus Jakarta Sans', system-ui, sans-serif{% endif %};
+  }
+</style>

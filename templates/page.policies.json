@@ -1,0 +1,14 @@
+{
+  "sections": {
+    "main_policies": {
+      "type": "main-policies",
+      "settings": {
+        "title": "Shipping, Warranty & Store Policies",
+        "subtitle": "Clear, customer-first terms ensuring your peace of mind with every splash."
+      }
+    }
+  },
+  "order": [
+    "main_policies"
+  ]
+}

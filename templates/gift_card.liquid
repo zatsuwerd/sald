@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}">
+  <head>
+    <meta charset="utf-8">
+    <title>{{ 'gift_cards.issued.title' | t: value: formatted_initial_value, shop: shop.name }}</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    {{ 'theme.css' | asset_url | stylesheet_tag }}
+  </head>
+  <body class="bg-surface py-16 px-4 text-center">
+    <div class="max-w-md mx-auto bg-white p-8 rounded-3xl shadow-xl border border-slate-200">
+      <h1 class="text-2xl font-black text-slate-900 mb-2">{{ shop.name }}</h1>
+      <p class="text-xs uppercase tracking-widest text-cyan-600 font-extrabold mb-6">Outdoor &amp; Pool Fun Gift Card</p>
+      
+      <div class="p-6 bg-slate-900 text-white rounded-2xl mb-6">
+        <p class="text-3xl font-black text-amber-400">{{ gift_card.initial_value | money_with_currency }}</p>
+        <p class="text-xs text-slate-400 mt-2 font-mono tracking-widest">{{ gift_card.code | format_code }}</p>
+      </div>
+
+      <a href="{{ shop.url }}" class="inline-block w-full py-3.5 bg-cyan-500 hover:bg-cyan-600 text-white font-bold rounded-xl shadow-md">
+        Start Shopping
+      </a>
+    </div>
+  </body>
+</html>

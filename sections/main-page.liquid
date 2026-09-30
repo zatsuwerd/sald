@@ -1,0 +1,26 @@
+<div class="main-page-section py-10 md:py-16 bg-white min-h-[60vh]">
+  <div class="page-width mx-auto px-4 md:px-8 max-w-4xl">
+    <nav class="mb-6 text-xs text-slate-500" aria-label="breadcrumbs">
+      <a href="{{ routes.root_url }}" class="hover:text-cyan-600">{{ 'general.breadcrumbs.home' | t | default: 'Home' }}</a>
+      <span class="mx-2">&rsaquo;</span>
+      <span class="text-slate-800 font-semibold">{{ page.title }}</span>
+    </nav>
+
+    <h1 class="text-3xl md:text-5xl font-black text-slate-900 tracking-tight mb-8">
+      {{ page.title }}
+    </h1>
+
+    <div class="prose prose-slate max-w-none text-slate-700 leading-relaxed space-y-4">
+      {{ page.content }}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Page Content",
+  "tag": "section",
+  "class": "section-main-page",
+  "settings": []
+}
+{% endschema %}

@@ -1,0 +1,120 @@
+<div class="main-cart-section py-10 md:py-16 bg-white min-h-[60vh]">
+  <div class="page-width mx-auto px-4 md:px-8 max-w-5xl">
+    <h1 class="text-3xl md:text-4xl font-black text-slate-900 tracking-tight mb-8">
+      {{ 'sections.cart.title' | t | default: 'Your Cart' }}
+    </h1>
+
+    {%- if cart.item_count > 0 -%}
+      <form action="{{ routes.cart_url }}" method="post" id="cart" class="space-y-8">
+        {%- if settings.enable_free_shipping_bar -%}
+          {%- assign threshold_cents = settings.free_shipping_threshold | default: 75 | times: 100 -%}
+          <div class="p-4 rounded-2xl bg-cyan-50 border border-cyan-200">
+            {%- if cart.total_price >= threshold_cents -%}
+              <p class="text-sm font-bold text-cyan-900 flex items-center gap-2">
+                <span>🎉</span>
+                <span>{{ settings.free_shipping_unlocked_text | default: 'You have unlocked FREE Express Delivery!' }}</span>
+              </p>
+            {%- else -%}
+              {%- assign diff = threshold_cents | minus: cart.total_price | money -%}
+              <p class="text-sm font-semibold text-cyan-900">
+                Add <span class="font-extrabold text-cyan-700">{{ diff }}</span> more for FREE Express Delivery!
+              </p>
+            {%- endif -%}
+            {%- assign progress = cart.total_price | times: 100 | divided_by: threshold_cents -%}
+            {%- if progress > 100 -%}{%- assign progress = 100 -%}{%- endif -%}
+            <div class="mt-2 w-full h-2 rounded-full bg-cyan-200 overflow-hidden">
+              <div class="h-full bg-cyan-500 rounded-full transition-all duration-300" style="width: {{ progress }}%"></div>
+            </div>
+          </div>
+        {%- endif -%}
+
+        <div class="border border-slate-200 rounded-2xl overflow-hidden divide-y divide-slate-100">
+          {%- for item in cart.items -%}
+            <div class="p-4 md:p-6 flex flex-col sm:flex-row items-center gap-4 md:gap-6 bg-white hover:bg-slate-50 transition-colors">
+              <div class="w-20 h-20 md:w-24 md:h-24 rounded-xl overflow-hidden bg-slate-100 flex-shrink-0 border border-slate-100">
+                {%- if item.image -%}
+                  <img src="{{ item.image | image_url: width: 200 }}" alt="{{ item.title | escape }}" class="w-full h-full object-cover">
+                {%- endif -%}
+              </div>
+
+              <div class="flex-1 text-center sm:text-left">
+                <a href="{{ item.url }}" class="font-bold text-slate-900 hover:text-cyan-600 transition-colors">
+                  {{ item.product.title }}
+                </a>
+                {%- unless item.product.has_only_default_variant -%}
+                  <p class="text-xs text-slate-500 mt-0.5">{{ item.variant.title }}</p>
+                {%- endunless -%}
+                <p class="text-sm font-semibold text-cyan-700 mt-1">{{ item.final_price | money }}</p>
+              </div>
+
+              <div class="flex items-center gap-3">
+                <div class="flex items-center border border-slate-300 rounded-lg overflow-hidden bg-white">
+                  <a href="{{ routes.cart_change_url }}?line={{ forloop.index }}&quantity={{ item.quantity | minus: 1 }}" class="px-3 py-1.5 text-slate-600 hover:bg-slate-100 text-sm font-bold">&minus;</a>
+                  <span class="px-3 py-1 text-sm font-semibold text-slate-800">{{ item.quantity }}</span>
+                  <a href="{{ routes.cart_change_url }}?line={{ forloop.index }}&quantity={{ item.quantity | plus: 1 }}" class="px-3 py-1.5 text-slate-600 hover:bg-slate-100 text-sm font-bold">&plus;</a>
+                </div>
+
+                <a href="{{ routes.cart_change_url }}?line={{ forloop.index }}&quantity=0" class="text-slate-400 hover:text-red-500 p-2 transition-colors" title="Remove item">
+                  <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg>
+                </a>
+              </div>
+
+              <div class="text-right sm:w-28 font-bold text-slate-900">
+                {{ item.final_line_price | money }}
+              </div>
+            </div>
+          {%- endfor -%}
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 pt-4">
+          {%- if section.settings.show_order_notes -%}
+            <div>
+              <label for="CartNote" class="block text-sm font-bold text-slate-700 mb-2">Order Notes / Delivery Instructions</label>
+              <textarea name="note" id="CartNote" rows="4" class="w-full p-3 rounded-xl border border-slate-200 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-200 text-sm" placeholder="E.g. Gate code, gift message, or pool delivery spot...">{{ cart.note }}</textarea>
+            </div>
+          {%- else -%}
+            <div></div>
+          {%- endif -%}
+
+          <div class="bg-surface p-6 rounded-2xl border border-slate-200 space-y-4">
+            <div class="flex justify-between text-base text-slate-600">
+              <span>{{ 'sections.cart.subtotal' | t | default: 'Subtotal' }}</span>
+              <span class="font-extrabold text-2xl text-slate-900">{{ cart.total_price | money }}</span>
+            </div>
+            <p class="text-xs text-slate-500">Taxes, shipping and splash perks calculated at checkout.</p>
+            <button type="submit" name="checkout" class="w-full py-4 rounded-xl bg-cyan-500 hover:bg-cyan-600 text-white font-extrabold text-base tracking-wide shadow-lg shadow-cyan-500/25 transition-all">
+              {{ 'sections.cart.checkout' | t | default: 'Proceed to Checkout' }}
+            </button>
+          </div>
+        </div>
+      </form>
+    {%- else -%}
+      <div class="text-center py-20 bg-surface rounded-3xl border border-slate-200 p-8">
+        <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-cyan-100 text-cyan-600 flex items-center justify-center">
+          <svg class="w-10 h-10 fill-current" viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
+        </div>
+        <h2 class="text-2xl font-bold text-slate-800">Your Cart is Empty</h2>
+        <p class="text-slate-500 mt-2 max-w-md mx-auto text-sm">Looks like you haven't picked out any pool or garden games yet!</p>
+        <a href="{{ routes.all_products_collection_url }}" class="inline-block mt-6 px-8 py-3.5 bg-cyan-500 hover:bg-cyan-600 text-white font-bold rounded-xl shadow-md transition-colors">
+          Explore Best Sellers
+        </a>
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Cart Page",
+  "tag": "section",
+  "class": "section-main-cart",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_order_notes",
+      "label": "Enable order notes",
+      "default": true
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,79 @@
+<div class="main-policies-section py-12 md:py-20 bg-white">
+  <div class="page-width mx-auto px-4 md:px-8 max-w-4xl">
+    
+    <div class="text-center max-w-2xl mx-auto mb-12">
+      <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-black tracking-wider uppercase bg-cyan-50 text-cyan-700 border border-cyan-200/80 mb-3">
+        Guarantees &amp; Terms
+      </span>
+      <h1 class="text-3xl md:text-5xl font-black text-slate-900 tracking-tight">
+        {{ section.settings.title | default: 'Shipping, Warranty & Store Policies' }}
+      </h1>
+      <p class="mt-3 text-slate-600 text-sm md:text-base">
+        {{ section.settings.subtitle | default: 'Clear, customer-first terms ensuring your peace of mind with every splash.' }}
+      </p>
+    </div>
+
+    <div class="space-y-10">
+      
+      <!-- Shipping Policy -->
+      <section class="p-6 md:p-8 rounded-3xl bg-slate-50 border border-slate-200/80">
+        <h2 class="text-xl font-black text-slate-900 mb-3 flex items-center gap-2">
+          <span>📦</span>
+          <span>Fast Shipping &amp; Express Delivery</span>
+        </h2>
+        <div class="text-sm text-slate-700 space-y-3 leading-relaxed">
+          <p>• <strong>Free Express Shipping:</strong> Available on all domestic orders of $75 or more automatically at checkout.</p>
+          <p>• <strong>Order Processing:</strong> Orders placed before 2:00 PM EST dispatch the same business day. All other orders dispatch within 24 hours.</p>
+          <p>• <strong>Tracking:</strong> Complete real-time GPS courier tracking numbers are sent via email as soon as the shipping carrier scans the parcel.</p>
+        </div>
+      </section>
+
+      <!-- 30-Day Splash Guarantee -->
+      <section class="p-6 md:p-8 rounded-3xl bg-slate-50 border border-slate-200/80">
+        <h2 class="text-xl font-black text-slate-900 mb-3 flex items-center gap-2">
+          <span>🛡️</span>
+          <span>30-Day Splash Guarantee &amp; Returns</span>
+        </h2>
+        <div class="text-sm text-slate-700 space-y-3 leading-relaxed">
+          <p>We want you to test our games in real pool conditions. If you are not 100% satisfied with the quality, bounce, or fun factor, you have a full 30 days from delivery to request a hassle-free return.</p>
+          <p>To initiate a return, email <strong>support@sald-outdoor.com</strong> with your order number. Return shipping labels are provided free for all warranty and defect claims.</p>
+        </div>
+      </section>
+
+      <!-- Child Safety & Quality Standards -->
+      <section class="p-6 md:p-8 rounded-3xl bg-slate-50 border border-slate-200/80">
+        <h2 class="text-xl font-black text-slate-900 mb-3 flex items-center gap-2">
+          <span>🧪</span>
+          <span>Safety Certifications &amp; Non-Toxic Guarantee</span>
+        </h2>
+        <div class="text-sm text-slate-700 space-y-3 leading-relaxed">
+          <p>All SALD products undergo rigorous laboratory testing to comply with US ASTM F963, European EN71, and international CPSIA standards. They are free from phthalates, lead, and BPA.</p>
+        </div>
+      </section>
+
+    </div>
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Store Policies Content",
+  "tag": "section",
+  "class": "section-main-policies",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Shipping, Warranty & Store Policies"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Clear, customer-first terms ensuring your peace of mind with every splash."
+    }
+  ]
+}
+{% endschema %}

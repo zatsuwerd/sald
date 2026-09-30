@@ -1,0 +1,87 @@
+{
+  "general": {
+    "skip_to_content": "Skip to content",
+    "search": "Search pool games, outdoor fun...",
+    "search_title": "Search Products & Guides",
+    "close": "Close",
+    "share": "Share",
+    "copy_link": "Copy link",
+    "link_copied": "Link copied to clipboard"
+  },
+  "header": {
+    "announcement": "🌊 Summer Splash Sale: Get 20% OFF all Pool Games with code SPLASH20 | Free Express Shipping over $75",
+    "menu": "Menu",
+    "cart": "Cart",
+    "account": "Account",
+    "wishlist": "Wishlist",
+    "search": "Search"
+  },
+  "sections": {
+    "video_hero": {
+      "eyebrow": "PLAY • SPLASH • ENJOY",
+      "headline": "Make Every Outdoor Moment More Fun",
+      "description": "Discover pool games, playground fun and outdoor games designed for unforgettable family moments.",
+      "primary_btn": "Shop Best Sellers",
+      "secondary_btn": "Explore Categories"
+    },
+    "categories": {
+      "title": "Shop By Category",
+      "subtitle": "Engineered for endless summer entertainment, backyards, and resorts"
+    },
+    "featured_collection": {
+      "title": "Trending Pool & Garden Games",
+      "subtitle": "Our top-rated outdoor essentials tested for high durability and maximum laughs",
+      "view_all": "View All Products"
+    },
+    "benefits": {
+      "badge": "Why SALD?",
+      "title": "Built for Unstoppable Family Fun"
+    },
+    "best_sellers": {
+      "title": "Most Wanted Outdoor Games",
+      "subtitle": "Parent-approved, kid-obsessed essentials crafted from UV-treated, waterproof materials"
+    },
+    "activities": {
+      "title": "Shop by Activity & Setting",
+      "subtitle": "Whether you are hosting a pool party, lawn barbecue, or beach tournament"
+    },
+    "newsletter": {
+      "title": "Never Miss the Fun",
+      "subtitle": "Sign up for exclusive drops, backyard game guides, and 15% off your first order.",
+      "placeholder": "Enter your email address",
+      "button": "Join Club SALD",
+      "success": "Welcome to the SALD family! Check your inbox for your 15% discount."
+    }
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "Add to Cart",
+      "sold_out": "Sold Out",
+      "unavailable": "Unavailable",
+      "quick_add": "Quick Add",
+      "quick_view": "Quick View",
+      "view_details": "View Product Details",
+      "regular_price": "Regular price",
+      "sale_price": "Sale price",
+      "quantity": "Quantity",
+      "in_stock": "In Stock, Ready to Ship Today",
+      "low_stock": "Only a few left!",
+      "free_shipping_notice": "Ships free on orders over $75",
+      "trust_1": "30-Day Splash Guarantee",
+      "trust_2": "Heavy-Duty UV & Chlorine Resistant",
+      "trust_3": "Safe & Non-Toxic Certified"
+    }
+  },
+  "cart": {
+    "title": "Your Cart",
+    "empty": "Your cart is currently empty",
+    "empty_cta": "Explore Top Outdoor Games",
+    "subtotal": "Subtotal",
+    "shipping_at_checkout": "Taxes and shipping calculated at checkout",
+    "checkout": "Proceed to Checkout",
+    "continue_shopping": "Continue Shopping",
+    "note": "Add delivery note or gift message",
+    "free_shipping_remaining": "Add {{ amount }} more for FREE Express Shipping!",
+    "free_shipping_earned": "🎉 You unlocked FREE Express Shipping!"
+  }
+}

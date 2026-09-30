@@ -1,0 +1,53 @@
+{%- if section.settings.show_announcement -%}
+<aside class="sald-announcement-bar py-2.5 px-4 text-center text-xs md:text-sm font-semibold tracking-wide border-b transition-colors"
+  style="background-color: {{ section.settings.bg_color | default: settings.color_announcement_bg }}; color: {{ section.settings.text_color | default: settings.color_announcement_text }}; border-color: rgba(255,255,255,0.1);"
+  aria-label="Announcement">
+  <div class="max-w-7xl mx-auto flex items-center justify-center gap-3">
+    {%- if section.settings.link != blank -%}
+      <a href="{{ section.settings.link }}" class="inline-flex items-center gap-2 hover:opacity-90 group transition-opacity">
+        <span>{{ section.settings.text }}</span>
+        <svg class="w-4 h-4 transition-transform group-hover:translate-x-1 rtl:group-hover:-translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    {%- else -%}
+      <span>{{ section.settings.text }}</span>
+    {%- endif -%}
+  </div>
+</aside>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Announcement bar",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_announcement",
+      "label": "Show announcement bar",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Announcement text",
+      "default": "🌊 Summer Splash Sale: 20% OFF all Pool Games with code SPLASH20 | Free Express Shipping over $75"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Link URL"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#15202B"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#FFFFFF"
+    }
+  ]
+}
+{% endschema %}

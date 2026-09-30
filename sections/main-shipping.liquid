@@ -1,0 +1,51 @@
+<div class="main-shipping-section py-12 md:py-20 bg-white">
+  <div class="page-width mx-auto px-4 md:px-8 max-w-4xl">
+    <div class="text-center max-w-2xl mx-auto mb-12">
+      <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-black tracking-wider uppercase bg-cyan-50 text-cyan-700 border border-cyan-200/80 mb-3">
+        Fast Delivery
+      </span>
+      <h1 class="text-3xl md:text-5xl font-black text-slate-900 tracking-tight">
+        {{ section.settings.title | default: 'Express Shipping & Delivery Information' }}
+      </h1>
+      <p class="mt-3 text-slate-600 text-sm md:text-base">
+        {{ section.settings.subtitle | default: 'Free express shipping on all orders over $75 with same-day dispatch.' }}
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+      <div class="p-6 rounded-3xl bg-cyan-50/60 border border-cyan-200/80 text-center">
+        <div class="w-12 h-12 rounded-2xl bg-cyan-500 text-white flex items-center justify-center mx-auto mb-4 shadow-md shadow-cyan-500/30">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"/></svg>
+        </div>
+        <h3 class="font-black text-slate-900 mb-1">Free Over $75</h3>
+        <p class="text-xs text-slate-600">Automatic free shipping at checkout for qualifying baskets.</p>
+      </div>
+
+      <div class="p-6 rounded-3xl bg-amber-50/60 border border-amber-200/80 text-center">
+        <div class="w-12 h-12 rounded-2xl bg-amber-500 text-white flex items-center justify-center mx-auto mb-4 shadow-md shadow-amber-500/30">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        </div>
+        <h3 class="font-black text-slate-900 mb-1">Same-Day Dispatch</h3>
+        <p class="text-xs text-slate-600">Orders before 2 PM EST ship same business day.</p>
+      </div>
+
+      <div class="p-6 rounded-3xl bg-emerald-50/60 border border-emerald-200/80 text-center">
+        <div class="w-12 h-12 rounded-2xl bg-emerald-500 text-white flex items-center justify-center mx-auto mb-4 shadow-md shadow-emerald-500/30">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        </div>
+        <h3 class="font-black text-slate-900 mb-1">Live Tracking</h3>
+        <p class="text-xs text-slate-600">Doorstep GPS tracking updates emailed right to you.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Shipping Content",
+  "settings": [
+    { "type": "text", "id": "title", "label": "Heading", "default": "Express Shipping & Delivery Information" },
+    { "type": "textarea", "id": "subtitle", "label": "Subtitle", "default": "Free express shipping on all orders over $75 with same-day dispatch." }
+  ]
+}
+{% endschema %}

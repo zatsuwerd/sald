@@ -1,0 +1,14 @@
+{
+  "sections": {
+    "main_importer": {
+      "type": "main-page-importer",
+      "settings": {
+        "title": "SALD OS 2.0 Page & Template Importer",
+        "subtitle": "Interactive theme diagnostic and page generator for Shopify store administrators."
+      }
+    }
+  },
+  "order": [
+    "main_importer"
+  ]
+}

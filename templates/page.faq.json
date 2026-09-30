@@ -1,0 +1,14 @@
+{
+  "sections": {
+    "main_faq": {
+      "type": "main-faq",
+      "settings": {
+        "title": "Frequently Asked Questions",
+        "subtitle": "Everything you need to know about SALD pool equipment, lawn games, warranties and express delivery."
+      }
+    }
+  },
+  "order": [
+    "main_faq"
+  ]
+}

@@ -1,0 +1,63 @@
+<div class="main-search-section py-10 md:py-16 bg-white min-h-[60vh]">
+  <div class="page-width mx-auto px-4 md:px-8 max-w-7xl">
+    <div class="max-w-2xl mx-auto text-center mb-10">
+      <h1 class="text-3xl md:text-4xl font-black text-slate-900 tracking-tight">
+        {{ 'general.search.search' | t | default: 'Search SALD Store' }}
+      </h1>
+      <form action="{{ routes.search_url }}" method="get" role="search" class="mt-6 flex items-center gap-2">
+        <input 
+          type="search" 
+          name="q" 
+          value="{{ search.terms | escape }}" 
+          placeholder="Search pool hoops, tumble towers, obstacle kits..."
+          class="flex-1 py-3 px-5 rounded-2xl border border-slate-300 focus:outline-none focus:border-cyan-500 focus:ring-2 focus:ring-cyan-200 text-sm font-medium"
+        >
+        <button type="submit" class="py-3 px-6 rounded-2xl bg-cyan-500 hover:bg-cyan-600 text-white font-bold text-sm shadow-md transition-colors">
+          Search
+        </button>
+      </form>
+    </div>
+
+    {%- if search.performed -%}
+      <div class="mb-6 pb-4 border-b border-slate-200 flex justify-between items-center text-sm text-slate-600">
+        <p>Found <strong class="text-slate-900">{{ search.results_count }}</strong> results for "{{ search.terms }}"</p>
+      </div>
+
+      {%- if search.results_count > 0 -%}
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+          {%- for item in search.results -%}
+            {%- if item.object_type == 'product' -%}
+              {% render 'product-card', product: item %}
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      {%- else -%}
+        <div class="text-center py-16 bg-surface rounded-2xl border border-slate-200">
+          <p class="text-slate-600 font-medium">No results found for "{{ search.terms }}". Try searching for "pool", "volleyball", or "tower".</p>
+          <a href="{{ routes.all_products_collection_url }}" class="inline-block mt-4 text-cyan-600 font-bold hover:underline">
+            View All Games &rarr;
+          </a>
+        </div>
+      {%- endif -%}
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Search Page",
+  "tag": "section",
+  "class": "section-main-search",
+  "settings": [
+    {
+      "type": "range",
+      "id": "products_per_page",
+      "min": 8,
+      "max": 32,
+      "step": 4,
+      "label": "Products per page",
+      "default": 16
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,30 @@
+<div class="main-warranty-section py-12 md:py-20 bg-white">
+  <div class="page-width mx-auto px-4 md:px-8 max-w-4xl text-center">
+    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-black tracking-wider uppercase bg-amber-50 text-amber-800 border border-amber-200/80 mb-3">
+      1-Year Unconditional Protection
+    </span>
+    <h1 class="text-3xl md:text-5xl font-black text-slate-900 tracking-tight mb-4">
+      {{ section.settings.title | default: 'The 1-Year SALD Splash Warranty' }}
+    </h1>
+    <p class="text-slate-600 text-sm md:text-base max-w-2xl mx-auto mb-10">
+      {{ section.settings.subtitle | default: 'Our marine-grade games are engineered to withstand blazing sun, heavy splash tournaments, and chlorinated pools.' }}
+    </p>
+
+    <div class="p-8 rounded-3xl bg-slate-900 text-white text-left space-y-4 shadow-xl">
+      <h3 class="text-xl font-bold text-amber-400">Zero-Hassle Replacement Guarantee</h3>
+      <p class="text-slate-300 text-sm leading-relaxed">
+        If any component suffers UV embrittlement, chlorine degradation, or structural failure within 365 days of purchase, simply submit a picture through our support portal for immediate complimentary replacement.
+      </p>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Warranty Content",
+  "settings": [
+    { "type": "text", "id": "title", "label": "Heading", "default": "The 1-Year SALD Splash Warranty" },
+    { "type": "textarea", "id": "subtitle", "label": "Subtitle", "default": "Our marine-grade games are engineered to withstand blazing sun and chlorinated pools." }
+  ]
+}
+{% endschema %}

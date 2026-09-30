@@ -1,0 +1,14 @@
+{
+  "sections": {
+    "main_warranty": {
+      "type": "main-warranty",
+      "settings": {
+        "title": "1-Year Unconditional Splash Guarantee",
+        "subtitle": "Marine-grade resilience with free instant replacement against sun or chlorine degradation."
+      }
+    }
+  },
+  "order": [
+    "main_warranty"
+  ]
+}

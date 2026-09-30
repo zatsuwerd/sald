@@ -1,0 +1,121 @@
+<section id="categories" class="sald-category-grid py-16 lg:py-24 bg-white" data-section-id="{{ section.id }}">
+  <div class="max-w-[var(--page-width)] mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center max-w-2xl mx-auto mb-12">
+      {%- if section.settings.title != blank -%}
+        <h2 class="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">{{ section.settings.title }}</h2>
+      {%- endif -%}
+      {%- if section.settings.subtitle != blank -%}
+        <p class="mt-3 text-slate-600 font-medium text-base sm:text-lg">{{ section.settings.subtitle }}</p>
+      {%- endif -%}
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-{{ section.settings.columns_desktop | default: 4 }} gap-6">
+      {%- for block in section.blocks -%}
+        <a href="{{ block.settings.link | default: '/collections/all' }}" 
+           class="group relative overflow-hidden rounded-2xl bg-slate-100 border border-slate-200/80 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-end p-6 min-h-[320px]"
+           {{ block.shopify_attributes }}>
+          
+          <!-- Background image or gradient -->
+          <div class="absolute inset-0 overflow-hidden">
+            {%- if block.settings.image != blank -%}
+              <img src="{{ block.settings.image | image_url: width: 800 }}" 
+                   alt="{{ block.settings.title | escape }}" 
+                   class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" 
+                   loading="lazy" width="800" height="600">
+            {%- else -%}
+              <!-- Dynamic Stylized Category Visual Gradient -->
+              <div class="w-full h-full bg-gradient-to-t from-slate-950 via-slate-900/60 to-cyan-800/30 group-hover:scale-105 transition-transform duration-500"></div>
+            {%- endif -%}
+          </div>
+
+          <!-- Bottom gradient shadow for readable text -->
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-900/40 to-transparent"></div>
+
+          <!-- Card Content -->
+          <div class="relative z-10">
+            <h3 class="text-xl sm:text-2xl font-extrabold text-white tracking-tight group-hover:text-cyan-300 transition-colors">
+              {{ block.settings.title }}
+            </h3>
+            {%- if block.settings.tagline != blank -%}
+              <p class="text-xs sm:text-sm text-slate-300 mt-1 font-medium line-clamp-2">
+                {{ block.settings.tagline }}
+              </p>
+            {%- endif -%}
+            
+            <div class="mt-4 inline-flex items-center text-xs font-bold text-amber-400 group-hover:text-amber-300 gap-1.5">
+              <span>Explore Gear</span>
+              <svg class="w-4 h-4 transition-transform group-hover:translate-x-1 rtl:group-hover:-translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </div>
+        </a>
+      {%- endfor -%}
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Category Grid",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section heading",
+      "default": "Shop By Category"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Section subtitle",
+      "default": "Engineered for active pool days, backyard tournaments and lawn fun"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 2,
+      "max": 5,
+      "step": 1,
+      "label": "Desktop columns",
+      "default": 4
+    }
+  ],
+  "blocks": [
+    {
+      "type": "category_item",
+      "name": "Category Card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Category image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Category title",
+          "default": "Pool Games"
+        },
+        {
+          "type": "text",
+          "id": "tagline",
+          "label": "Short description",
+          "default": "Floating hoops, nets and diving sets"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Category link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Category Grid",
+      "category": "Collection"
+    }
+  ]
+}
+{% endschema %}

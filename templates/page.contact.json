@@ -1,0 +1,14 @@
+{
+  "sections": {
+    "main_contact": {
+      "type": "main-contact",
+      "settings": {
+        "title": "We'd Love to Hear from You",
+        "subtitle": "Questions about order delivery, warranty splash protection, or game dimensions? Our team responds within 24 hours."
+      }
+    }
+  },
+  "order": [
+    "main_contact"
+  ]
+}

@@ -1,0 +1,22 @@
+<div id="SearchDrawer" class="sald-search-drawer fixed inset-0 z-50 overflow-hidden pointer-events-none transition-opacity duration-200 opacity-0" aria-hidden="true" role="dialog">
+  <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm" data-search-close></div>
+  <div class="fixed inset-x-0 top-0 bg-white border-b border-slate-200 shadow-2xl p-6 pointer-events-auto transform -translate-y-full transition-transform duration-300" data-search-panel>
+    <div class="max-w-3xl mx-auto">
+      <div class="flex items-center justify-between mb-4">
+        <span class="text-xs font-black uppercase tracking-wider text-cyan-600">Search Products</span>
+        <button type="button" class="p-2 text-slate-400 hover:text-slate-700" data-search-close aria-label="Close search">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <form action="{{ routes.search_url }}" method="get" role="search" class="relative">
+        <input type="text" 
+               name="q" 
+               placeholder="Search pool basketball, lawn games, giant towers..." 
+               class="w-full pl-12 pr-4 py-4 text-base bg-slate-50 border border-slate-200 rounded-2xl focus:outline-none focus:border-cyan-500 font-medium"
+               data-predictive-search-input>
+        <svg class="w-6 h-6 text-slate-400 absolute left-4 top-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,49 @@
+<section class="sald-newsletter py-16 bg-slate-900 text-white" data-section-id="{{ section.id }}">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <div class="w-12 h-12 bg-cyan-500/20 text-cyan-400 rounded-2xl flex items-center justify-center mx-auto mb-4 border border-cyan-400/30">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+    </div>
+
+    <h2 class="text-3xl sm:text-4xl font-black tracking-tight mb-3">{{ section.settings.heading }}</h2>
+    <p class="text-base text-slate-300 font-medium mb-8 max-w-xl mx-auto">{{ section.settings.subheading }}</p>
+
+    <!-- Native Shopify Customer Form -->
+    {% form 'customer', class: 'max-w-md mx-auto flex flex-col sm:flex-row gap-3' %}
+      <input type="hidden" name="contact[tags]" value="newsletter">
+      <input type="email" 
+             name="contact[email]" 
+             placeholder="{{ 'sections.newsletter.placeholder' | t | default: 'Enter your email address' }}" 
+             required 
+             class="flex-1 px-5 py-3.5 rounded-full bg-slate-800 border border-slate-700 text-white placeholder-slate-400 focus:outline-none focus:border-cyan-400 text-sm">
+      <button type="submit" class="px-8 py-3.5 bg-cyan-500 hover:bg-cyan-600 text-white font-extrabold text-sm rounded-full transition-colors whitespace-nowrap">
+        {{ 'sections.newsletter.button' | t | default: 'Join Club SALD' }}
+      </button>
+    {% endform %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Newsletter",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Never Miss the Fun"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Sign up for exclusive drops, backyard game guides, and 15% off your first order."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Newsletter",
+      "category": "Promotions"
+    }
+  ]
+}
+{% endschema %}

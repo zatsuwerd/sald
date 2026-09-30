@@ -1,0 +1,99 @@
+<section class="sald-featured-collection py-16 lg:py-24 bg-slate-50 border-y border-slate-200/60" data-section-id="{{ section.id }}">
+  <div class="max-w-[var(--page-width)] mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+      <div>
+        <h2 class="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">{{ section.settings.title }}</h2>
+        {%- if section.settings.subtitle != blank -%}
+          <p class="mt-2 text-slate-600 font-medium text-base sm:text-lg max-w-xl">{{ section.settings.subtitle }}</p>
+        {%- endif -%}
+      </div>
+      {%- if section.settings.show_view_all -%}
+        <a href="{{ section.settings.collection.url | default: '/collections/all' }}" class="inline-flex items-center gap-2 font-bold text-cyan-600 hover:text-cyan-700 text-sm group">
+          <span>{{ 'sections.featured_collection.view_all' | t | default: 'View All Products' }}</span>
+          <svg class="w-4 h-4 transition-transform group-hover:translate-x-1 rtl:group-hover:-translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      {%- endif -%}
+    </div>
+
+    <!-- Product Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-{{ section.settings.columns_desktop | default: 4 }} gap-6 sm:gap-8">
+      {%- if section.settings.collection != blank and section.settings.collection.products.size > 0 -%}
+        {%- for product in section.settings.collection.products limit: section.settings.products_to_show -%}
+          {% render 'product-card', product: product %}
+        {%- endfor -%}
+      {%- else -%}
+        <!-- Onboarding Demo Products -->
+        {%- for i in (1..section.settings.products_to_show) -%}
+          <div class="bg-white rounded-2xl p-4 border border-slate-200 shadow-sm flex flex-col justify-between">
+            <div class="aspect-square bg-cyan-50 rounded-xl mb-4 flex items-center justify-center text-cyan-600 font-bold">
+              Product Demo {{ i }}
+            </div>
+            <div>
+              <p class="text-xs text-slate-400 font-bold uppercase">SALD Original</p>
+              <h4 class="font-bold text-slate-900 mt-1">Splash Ball Pro Hoop Set</h4>
+              <p class="text-sm font-extrabold text-cyan-600 mt-2">$49.00</p>
+            </div>
+            <button class="mt-4 w-full py-2.5 bg-cyan-500 text-white font-bold text-xs rounded-xl hover:bg-cyan-600 transition-colors">Quick Add</button>
+          </div>
+        {%- endfor -%}
+      {%- endif -%}
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Featured Collection",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Trending Pool & Backyard Essentials"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subheading",
+      "default": "Our summer top-picks tested for chlorine resistance, UV durability, and pure joy"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 4,
+      "max": 16,
+      "step": 2,
+      "label": "Products to show",
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 2,
+      "max": 4,
+      "step": 1,
+      "label": "Desktop columns",
+      "default": 4
+    },
+    {
+      "type": "checkbox",
+      "id": "show_view_all",
+      "label": "Show 'View All' link",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Collection",
+      "category": "Collection"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,31 @@
+<div class="main-404-section py-20 bg-surface min-h-[60vh] flex items-center">
+  <div class="page-width mx-auto px-4 md:px-8 max-w-2xl text-center">
+    <div class="w-24 h-24 mx-auto mb-6 rounded-full bg-cyan-100 text-cyan-600 flex items-center justify-center font-black text-3xl">
+      404
+    </div>
+    <h1 class="text-3xl md:text-4xl font-black text-slate-900 tracking-tight mb-4">
+      Oops! This Game Seems Out of Bounds
+    </h1>
+    <p class="text-slate-600 text-base mb-8 max-w-md mx-auto">
+      The outdoor page or game link you're looking for doesn't exist or has moved to a new summer field.
+    </p>
+
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+      <a href="{{ routes.root_url }}" class="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm transition-colors">
+        Back to Home
+      </a>
+      <a href="{{ routes.all_products_collection_url }}" class="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-cyan-500 hover:bg-cyan-600 text-white font-bold text-sm shadow-md transition-colors">
+        Shop Best Sellers
+      </a>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "404 Not Found",
+  "tag": "section",
+  "class": "section-main-404",
+  "settings": []
+}
+{% endschema %}

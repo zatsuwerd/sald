@@ -1,0 +1,14 @@
+{
+  "sections": {
+    "main_returns": {
+      "type": "main-returns",
+      "settings": {
+        "title": "Hassle-Free 30-Day Returns",
+        "subtitle": "Pre-paid return labels and instant refunds for unopened or tested games."
+      }
+    }
+  },
+  "order": [
+    "main_returns"
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "sections": {
+    "main_blog": {
+      "type": "main-blog",
+      "settings": {
+        "show_image": true,
+        "show_date": true
+      }
+    }
+  },
+  "order": [
+    "main_blog"
+  ]
+}
