@@ -11,6 +11,7 @@
   {%- endif -%}
 
   :root {
+    /* Brand & Color Palette */
     --color-primary: {{ settings.color_primary | default: '#15202B' }};
     --color-secondary: {{ settings.color_secondary | default: '#00C2CB' }};
     --color-accent: {{ settings.color_accent | default: '#FBBF24' }};
@@ -18,13 +19,99 @@
     --color-surface: {{ settings.color_surface | default: '#F8FAFC' }};
     --color-headings: {{ settings.color_headings | default: '#0F172A' }};
     --color-body-text: {{ settings.color_body_text | default: '#334155' }};
-    --color-btn-bg: {{ settings.color_button_bg | default: '#00C2CB' }};
-    --color-btn-text: {{ settings.color_button_text | default: '#FFFFFF' }};
-    --color-btn-hover: {{ settings.color_button_hover | default: '#0891B2' }};
+    --color-button-bg: {{ settings.color_button_bg | default: '#00C2CB' }};
+    --color-button-text: {{ settings.color_button_text | default: '#FFFFFF' }};
+    --color-button-hover: {{ settings.color_button_hover | default: '#0891B2' }};
+    --color-border: {{ settings.color_border | default: '#E2E8F0' }};
+    --color-badge-sale: {{ settings.color_badge_sale | default: '#FBBF24' }};
+    --color-announcement-bg: {{ settings.color_announcement_bg | default: '#15202B' }};
+    --color-announcement-text: {{ settings.color_announcement_text | default: '#FFFFFF' }};
+
+    /* Header & Footer Customizations */
+    --header-bg: {{ settings.header_bg_color | default: '#FFFFFF' }};
+    --header-text: {{ settings.header_text_color | default: '#0F172A' }};
+    --footer-bg: {{ settings.footer_bg_color | default: '#0F172A' }};
+    --footer-text: {{ settings.footer_text_color | default: '#94A3B8' }};
+    --footer-headings: {{ settings.footer_heading_color | default: '#22D3EE' }};
+    --footer-accent: {{ settings.footer_accent_color | default: '#FBBF24' }};
+
+    /* Layout Geometry & Radii */
     --page-width: {{ settings.page_width | default: 1320 }}px;
+    --base-radius: {{ settings.card_radius | default: 16 }}px;
     --card-radius: {{ settings.card_radius | default: 16 }}px;
     --btn-radius: {{ settings.button_radius | default: 24 }}px;
-    --font-heading-family: {% if settings.font_heading %}{{ settings.font_heading.family }}, {{ settings.font_heading.fallback_families }}{% else %}'Plus Jakarta Sans', system-ui, sans-serif{% endif %};
-    --font-body-family: {% if settings.font_body %}{{ settings.font_body.family }}, {{ settings.font_body.fallback_families }}{% else %}'Plus Jakarta Sans', system-ui, sans-serif{% endif %};
+    --input-radius: 12px;
+
+    /* Typography & Font Scaling */
+    --heading-scale: {{ settings.heading_scale | default: 105 | divided_by: 100.0 }};
+    --body-scale: {{ settings.body_scale | default: 100 | divided_by: 100.0 }};
+    --font-heading: {% if settings.font_heading %}{{ settings.font_heading.family }}, {{ settings.font_heading.fallback_families }}{% else %}'Plus Jakarta Sans', system-ui, -apple-system, sans-serif{% endif %};
+    --font-body: {% if settings.font_body %}{{ settings.font_body.family }}, {{ settings.font_body.fallback_families }}{% else %}'Plus Jakarta Sans', system-ui, -apple-system, sans-serif{% endif %};
+    --font-heading-family: var(--font-heading);
+    --font-body-family: var(--font-body);
+  }
+
+  /* Universal Theme Settings Enforcements for Shopify Storefront & Editor Preview */
+  body, .sald-theme {
+    background-color: var(--color-bg) !important;
+    color: var(--color-body-text) !important;
+    font-family: var(--font-body) !important;
+    font-size: calc(1rem * var(--body-scale, 1)) !important;
+  }
+
+  h1, h2, h3, h4, h5, h6, .font-heading {
+    font-family: var(--font-heading) !important;
+    color: var(--color-headings) !important;
+  }
+  h1 { font-size: calc(2.25rem * var(--heading-scale, 1.05)) !important; }
+  h2 { font-size: calc(1.875rem * var(--heading-scale, 1.05)) !important; }
+  h3 { font-size: calc(1.5rem * var(--heading-scale, 1.05)) !important; }
+
+  /* Page Width */
+  .max-w-\[var\(--page-width\)\] {
+    max-width: var(--page-width, 1320px) !important;
+  }
+
+  /* Corner Radii */
+  .sald-product-card, .sald-card, .rounded-2xl, [data-card] {
+    border-radius: var(--card-radius, 16px) !important;
+  }
+  .sald-product-card .aspect-square, 
+  .sald-product-card [class*="aspect-"],
+  .rounded-xl {
+    border-radius: calc(var(--card-radius, 16px) - 4px) !important;
+  }
+
+  /* Action Buttons & Button Radius */
+  .sald-btn, 
+  button.rounded-full, 
+  a.rounded-full, 
+  button[data-quick-add], 
+  button[type="submit"], 
+  .rounded-2xl.bg-cyan-500,
+  a[class*="bg-cyan-500"],
+  button[class*="bg-cyan-500"] {
+    border-radius: var(--btn-radius, 24px) !important;
+  }
+
+  /* Dynamic Brand Palette Overrides */
+  .bg-cyan-500, .bg-cyan-600 {
+    background-color: var(--color-button-bg, var(--color-secondary, #00C2CB)) !important;
+    color: var(--color-button-text, #FFFFFF) !important;
+  }
+  .hover\:bg-cyan-600:hover, .hover\:bg-cyan-700:hover {
+    background-color: var(--color-button-hover, #0891B2) !important;
+  }
+  .text-cyan-600, .text-cyan-500, .text-cyan-400 {
+    color: var(--color-secondary, #00C2CB) !important;
+  }
+  .border-cyan-500, .border-cyan-400, .border-cyan-300 {
+    border-color: var(--color-secondary, #00C2CB) !important;
+  }
+  .bg-amber-400, .bg-amber-500, [data-badge-sale] {
+    background-color: var(--color-badge-sale, var(--color-accent, #FBBF24)) !important;
+  }
+  .text-amber-400, .text-amber-500 {
+    color: var(--color-accent, #FBBF24) !important;
   }
 </style>

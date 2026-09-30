@@ -1,0 +1,100 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --page-width: 1320px;
+  --base-radius: 16px;
+  --card-radius: 16px;
+  --button-radius: 24px;
+  --input-radius: 12px;
+  --badge-radius: 9999px;
+  --container-padding: 24px;
+  --color-primary: #15202B;
+  --color-secondary: #00C2CB;
+  --color-accent: #FBBF24;
+  --color-background: #FFFFFF;
+  --color-surface: #F8FAFC;
+  --color-headings: #0F172A;
+  --color-body-text: #334155;
+  --color-button-bg: #00C2CB;
+  --color-button-text: #FFFFFF;
+  --color-border: #E2E8F0;
+  --font-primary: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-arabic: 'Tajawal', system-ui, sans-serif;
+}
+
+[dir="rtl"] {
+  font-family: var(--font-arabic);
+}
+
+[dir="ltr"] {
+  font-family: var(--font-primary);
+}
+
+/* Dynamic theme helper classes */
+.theme-container {
+  max-width: var(--page-width);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.theme-card {
+  border-radius: var(--card-radius);
+}
+
+.theme-button {
+  border-radius: var(--button-radius);
+}
+
+.theme-input {
+  border-radius: var(--input-radius);
+}
+
+.theme-badge {
+  border-radius: var(--badge-radius);
+}
+
+/* Glassmorphism utilities */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.glass-dark {
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}

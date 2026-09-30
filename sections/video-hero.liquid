@@ -7,21 +7,40 @@
 
 {%- style -%}
   .section-{{ section.id }}-hero {
-    min-height: {{ section.settings.hero_height_mobile | default: 520 }}px;
+    {%- if section.settings.mobile_height_mode == 'fullscreen' -%}
+      min-height: 100dvh;
+      height: 100dvh;
+    {%- elsif section.settings.mobile_height_mode == 'large' -%}
+      min-height: 85dvh;
+    {%- elsif section.settings.mobile_height_mode == 'medium' -%}
+      min-height: 70dvh;
+    {%- else -%}
+      min-height: {{ section.settings.hero_height_mobile | default: 520 }}px;
+    {%- endif -%}
   }
+
   @media screen and (min-width: 768px) {
     .section-{{ section.id }}-hero {
-      min-height: {{ section.settings.hero_height_desktop | default: 680 }}px;
+      {%- if section.settings.desktop_height_mode == 'fullscreen' -%}
+        min-height: 100vh;
+        height: 100vh;
+      {%- elsif section.settings.desktop_height_mode == 'large' -%}
+        min-height: 85vh;
+        height: auto;
+      {%- else -%}
+        min-height: {{ section.settings.hero_height_desktop | default: 680 }}px;
+        height: auto;
+      {%- endif -%}
     }
   }
 {%- endstyle -%}
 
-<section class="sald-video-hero section-{{ section.id }}-hero relative overflow-hidden bg-slate-950 text-white flex items-center justify-center" 
+<section class="sald-video-hero section-{{ section.id }}-hero relative w-full overflow-hidden bg-slate-950 text-white flex flex-col justify-between" 
   data-section-id="{{ section.id }}"
   data-section-type="video-hero">
   
-  <!-- Media Container: Native Shopify-hosted video / External video / Fallback image -->
-  <div class="absolute inset-0 w-full h-full overflow-hidden pointer-events-none">
+  <!-- Media Container: Native Shopify-hosted video / External video / Fallback poster -->
+  <div class="absolute inset-0 w-full h-full overflow-hidden pointer-events-none z-0">
     {%- if section.settings.video != blank -%}
       {{ section.settings.video | video_tag: 
          autoplay: section.settings.autoplay, 
@@ -29,76 +48,84 @@
          muted: section.settings.muted, 
          controls: false, 
          playsinline: true,
-         class: 'w-full h-full object-cover' 
+         class: 'w-full h-full object-cover object-center' 
       }}
     {%- elsif section.settings.video_url != blank -%}
       {%- if section.settings.video_url.type == 'youtube' -%}
-        <iframe class="w-full h-full object-cover pointer-events-none scale-125"
-          src="https://www.youtube.com/embed/{{ section.settings.video_url.id }}?autoplay=1&mute=1&loop=1&playlist={{ section.settings.video_url.id }}&controls=0&showinfo=0&rel=0&playsinline=1"
-          frameborder="0" allow="autoplay; encrypted-media" allowfullscreen title="SALD Outdoor Video"></iframe>
+        <div class="relative w-full h-full min-h-full">
+          <iframe class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[180vw] h-[180vh] min-w-full min-h-full object-cover pointer-events-none"
+            src="https://www.youtube.com/embed/{{ section.settings.video_url.id }}?autoplay=1&mute=1&loop=1&playlist={{ section.settings.video_url.id }}&controls=0&showinfo=0&rel=0&playsinline=1"
+            frameborder="0" allow="autoplay; encrypted-media" allowfullscreen title="SALD Outdoor Video"></iframe>
+        </div>
       {%- elsif section.settings.video_url.type == 'vimeo' -%}
-        <iframe class="w-full h-full object-cover pointer-events-none scale-125"
-          src="https://player.vimeo.com/video/{{ section.settings.video_url.id }}?autoplay=1&muted=1&loop=1&autopause=0&background=1&playsinline=1"
-          frameborder="0" allow="autoplay; fullscreen" allowfullscreen title="SALD Outdoor Video"></iframe>
+        <div class="relative w-full h-full min-h-full">
+          <iframe class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[180vw] h-[180vh] min-w-full min-h-full object-cover pointer-events-none"
+            src="https://player.vimeo.com/video/{{ section.settings.video_url.id }}?autoplay=1&muted=1&loop=1&autopause=0&background=1&playsinline=1"
+            frameborder="0" allow="autoplay; fullscreen" allowfullscreen title="SALD Outdoor Video"></iframe>
+        </div>
       {%- endif -%}
     {%- elsif section.settings.fallback_image != blank -%}
       <img src="{{ section.settings.fallback_image | image_url: width: 2400 }}" 
            alt="{{ section.settings.heading | escape }}" 
-           class="w-full h-full object-cover" 
+           class="w-full h-full object-cover object-center" 
            loading="eager" width="2400" height="1350">
     {%- else -%}
       <!-- Default High-Fidelity Outdoor Pool Graphic Hero with Fallback Poster -->
       <div class="absolute inset-0 bg-gradient-to-tr from-slate-950 via-slate-900 to-cyan-950">
-        <img src="https://images.unsplash.com/photo-1533240332313-0db49b459ad6?q=80&w=1600&auto=format&fit=crop"
+        <img src="https://images.unsplash.com/photo-1576610616656-d3aa5d1f4534?q=80&w=2000&auto=format&fit=crop"
              alt="SALD Outdoor Pool Fun"
-             class="absolute inset-0 w-full h-full object-cover opacity-50"
+             class="absolute inset-0 w-full h-full object-cover object-center opacity-45"
              loading="eager">
         <div class="absolute inset-0 opacity-20 bg-[radial-gradient(#00C2CB_1px,transparent_1px)] [background-size:24px_24px]"></div>
       </div>
     {%- endif -%}
   </div>
 
-  <!-- Configurable Dark / Brand Tint Overlay -->
-  <div class="absolute inset-0 transition-opacity pointer-events-none" 
+  <!-- Configurable Dark / Brand Tint Overlay with Gradient Vignette -->
+  <div class="absolute inset-0 transition-opacity pointer-events-none z-[1]" 
        style="background: {{ section.settings.overlay_color | default: '#0F172A' }}; opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }};"></div>
+  <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/30 to-slate-950/40 pointer-events-none z-[2]"></div>
 
-  <!-- Hero Content Area with Mobile Responsiveness -->
-  <div class="relative z-10 w-full max-w-[var(--page-width)] mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-20 lg:py-28 flex flex-col items-center justify-center">
-    <div class="w-full max-w-2xl {% if section.settings.content_alignment == 'center' %}mx-auto text-center{% elsif section.settings.content_alignment == 'right' %}ml-auto text-right{% else %}text-left{% endif %}">
+  <!-- Top spacer to balance vertical layout on mobile full screen -->
+  <div class="hidden sm:block sm:h-12 lg:h-16 flex-shrink-0 relative z-10"></div>
+
+  <!-- Hero Content Area with Fluid Mobile Responsiveness -->
+  <div class="relative z-10 w-full max-w-[var(--page-width)] mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 lg:py-24 my-auto flex flex-col items-center justify-center">
+    <div class="w-full max-w-3xl {% if section.settings.content_alignment == 'center' %}mx-auto text-center{% elsif section.settings.content_alignment == 'right' %}ml-auto text-right{% else %}text-left{% endif %}">
       
       <!-- Eyebrow Badge -->
       {%- if section.settings.eyebrow != blank -%}
-        <div class="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1 sm:py-1.5 rounded-full bg-cyan-500/20 border border-cyan-400/40 text-cyan-300 font-black text-[10px] sm:text-xs uppercase tracking-wider sm:tracking-widest mb-4 sm:mb-6 backdrop-blur-md shadow-sm">
+        <div class="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1 sm:py-1.5 rounded-full bg-cyan-500/25 border border-cyan-400/40 text-cyan-300 font-black text-[11px] sm:text-xs uppercase tracking-wider sm:tracking-widest mb-3 sm:mb-6 backdrop-blur-md shadow-sm">
           <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-amber-400 animate-pulse"></span>
-          {{ section.settings.eyebrow }}
+          <span>{{ section.settings.eyebrow }}</span>
         </div>
       {%- endif -%}
 
-      <!-- Main Headline -->
-      <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-white leading-[1.12] sm:leading-[1.08] mb-4 sm:mb-6 drop-shadow-md break-words">
+      <!-- Main Headline with Fluid Mobile Typography (no cutoffs) -->
+      <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-[1.15] sm:leading-[1.08] mb-3 sm:mb-6 drop-shadow-lg break-words">
         {{ section.settings.heading }}
       </h1>
 
       <!-- Description Subtext -->
       {%- if section.settings.description != blank -%}
-        <p class="text-sm sm:text-base lg:text-lg text-slate-200/90 font-medium leading-relaxed mb-6 sm:mb-8 max-w-xl mx-auto px-2 {% if section.settings.content_alignment == 'center' %}mx-auto{% endif %}">
+        <p class="text-sm sm:text-base lg:text-lg text-slate-200 font-medium leading-relaxed mb-6 sm:mb-8 max-w-2xl mx-auto px-1 drop-shadow-sm {% if section.settings.content_alignment == 'center' %}mx-auto{% endif %}">
           {{ section.settings.description }}
         </p>
       {%- endif -%}
 
-      <!-- Action Buttons - Stacked on Mobile, Inline on Desktop -->
-      <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 w-full max-w-xs sm:max-w-none mx-auto {% if section.settings.content_alignment == 'center' %}sm:justify-center{% elsif section.settings.content_alignment == 'right' %}sm:justify-end{% else %}sm:justify-start{% endif %}">
+      <!-- Action Buttons - Full-width stacked touch targets on mobile (min 48px height), inline on desktop -->
+      <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 w-full max-w-sm sm:max-w-none mx-auto {% if section.settings.content_alignment == 'center' %}sm:justify-center{% elsif section.settings.content_alignment == 'right' %}sm:justify-end{% else %}sm:justify-start{% endif %}">
         {%- if section.settings.button_primary_label != blank -%}
           <a href="{{ section.settings.button_primary_link | default: routes.all_products_collection_url }}" 
-             class="w-full sm:w-auto inline-flex items-center justify-center px-6 sm:px-8 py-3.5 sm:py-4 text-sm sm:text-base font-extrabold text-white bg-cyan-500 hover:bg-cyan-600 rounded-full shadow-lg shadow-cyan-500/30 transition-all active:scale-95 sm:hover:scale-[1.03]">
+             class="w-full sm:w-auto inline-flex items-center justify-center min-h-[48px] px-7 sm:px-9 py-3.5 sm:py-4 text-sm sm:text-base font-black text-slate-950 bg-cyan-400 hover:bg-cyan-300 rounded-full shadow-xl shadow-cyan-500/25 transition-all active:scale-95 sm:hover:scale-[1.03]">
             <span>{{ section.settings.button_primary_label }}</span>
             <svg class="w-4 h-4 sm:w-5 sm:h-5 ml-2 rtl:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
         {%- endif -%}
 
         {%- if section.settings.button_secondary_label != blank -%}
-          <a href="{{ section.settings.button_secondary_link | default: '#categories' }}" 
-             class="w-full sm:w-auto inline-flex items-center justify-center px-6 sm:px-8 py-3.5 sm:py-4 text-sm sm:text-base font-bold text-white bg-white/10 hover:bg-white/20 border border-white/25 rounded-full backdrop-blur-md transition-all active:scale-95 sm:hover:scale-[1.02]">
+          <a href="{{ section.settings.button_secondary_link | default: '#categories-section' }}" 
+             class="w-full sm:w-auto inline-flex items-center justify-center min-h-[48px] px-7 sm:px-9 py-3.5 sm:py-4 text-sm sm:text-base font-bold text-white bg-white/10 hover:bg-white/20 border border-white/25 rounded-full backdrop-blur-md transition-all active:scale-95 sm:hover:scale-[1.02]">
             <span>{{ section.settings.button_secondary_label }}</span>
           </a>
         {%- endif -%}
@@ -107,10 +134,20 @@
     </div>
   </div>
 
-  <!-- Subtle bottom wave decorative divider -->
-  <div class="absolute bottom-0 inset-x-0 pointer-events-none">
-    <svg class="w-full text-white h-5 sm:h-8 md:h-14" viewBox="0 0 1440 80" fill="currentColor" preserveAspectRatio="none">
-      <path d="M0,32L80,42.7C160,53,320,75,480,69.3C640,64,800,32,960,26.7C1120,21,1280,43,1360,53.3L1440,64L1440,80L1360,80C1280,80,1120,80,960,80C800,80,640,80,480,80C320,80,160,80,80,80L0,80Z"></path>
+  <!-- Bottom Scroll Down Indicator / Wave Decorative Divider -->
+  <div class="relative z-10 w-full flex flex-col items-center justify-end pb-3 sm:pb-6 pointer-events-none">
+    {%- if section.settings.show_scroll_indicator -%}
+      <a href="#categories-section" class="pointer-events-auto inline-flex flex-col items-center gap-1 text-slate-300 hover:text-white text-[11px] font-bold uppercase tracking-widest transition-colors mb-2 animate-bounce">
+        <span>Scroll to Explore</span>
+        <svg class="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
+      </a>
+    {%- endif -%}
+  </div>
+
+  <!-- Bottom wave SVG transition -->
+  <div class="absolute bottom-0 inset-x-0 pointer-events-none z-10">
+    <svg class="w-full text-slate-50 h-5 sm:h-8 md:h-12" viewBox="0 0 1440 60" fill="currentColor" preserveAspectRatio="none">
+      <path d="M0,20 C240,45 480,5 720,25 C960,45 1200,10 1440,30 L1440,60 L0,60 Z"></path>
     </svg>
   </div>
 </section>
@@ -119,6 +156,60 @@
 {
   "name": "Video Hero",
   "settings": [
+    {
+      "type": "header",
+      "content": "Mobile & Screen Viewport Optimization"
+    },
+    {
+      "type": "select",
+      "id": "mobile_height_mode",
+      "label": "Mobile screen height display",
+      "options": [
+        { "value": "fullscreen", "label": "Full Screen Entire Viewport (100dvh)" },
+        { "value": "large", "label": "Large (85% Viewport)" },
+        { "value": "medium", "label": "Medium (70% Viewport)" },
+        { "value": "custom", "label": "Custom Pixel Height" }
+      ],
+      "default": "fullscreen",
+      "info": "Full Screen (100dvh) ensures the hero covers the entire mobile display without cutoff."
+    },
+    {
+      "type": "range",
+      "id": "hero_height_mobile",
+      "min": 400,
+      "max": 800,
+      "step": 20,
+      "unit": "px",
+      "label": "Custom mobile height (if custom selected)",
+      "default": 580
+    },
+    {
+      "type": "select",
+      "id": "desktop_height_mode",
+      "label": "Desktop screen height display",
+      "options": [
+        { "value": "fullscreen", "label": "Full Screen Viewport (100vh)" },
+        { "value": "large", "label": "Large (85vh)" },
+        { "value": "custom", "label": "Custom Pixel Height" }
+      ],
+      "default": "large"
+    },
+    {
+      "type": "range",
+      "id": "hero_height_desktop",
+      "min": 500,
+      "max": 960,
+      "step": 20,
+      "unit": "px",
+      "label": "Custom desktop height (if custom selected)",
+      "default": 720
+    },
+    {
+      "type": "checkbox",
+      "id": "show_scroll_indicator",
+      "label": "Show scroll to explore arrow indicator",
+      "default": true
+    },
     {
       "type": "header",
       "content": "Video Media"
@@ -233,26 +324,6 @@
       "id": "overlay_color",
       "label": "Overlay tint color",
       "default": "#0F172A"
-    },
-    {
-      "type": "range",
-      "id": "hero_height_desktop",
-      "min": 500,
-      "max": 900,
-      "step": 20,
-      "unit": "px",
-      "label": "Hero minimum height desktop",
-      "default": 680
-    },
-    {
-      "type": "range",
-      "id": "hero_height_mobile",
-      "min": 380,
-      "max": 650,
-      "step": 20,
-      "unit": "px",
-      "label": "Hero minimum height mobile",
-      "default": 520
     }
   ],
   "presets": [

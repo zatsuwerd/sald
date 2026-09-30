@@ -20,10 +20,10 @@
       {%- if settings.enable_free_shipping_bar -%}
         <div class="px-6 py-3.5 bg-cyan-50 border-b border-cyan-100">
           <div class="flex items-center justify-between text-xs font-bold text-cyan-900 mb-1.5" data-free-shipping-text>
-            <span>Add $25.00 more for FREE Express Shipping!</span>
+            <span>{{ settings.free_shipping_text | default: 'Add [amount] more to unlock FREE Express Delivery!' | replace: '[amount]', '$25.00' }}</span>
           </div>
           <div class="w-full h-2 bg-cyan-200/60 rounded-full overflow-hidden">
-            <div class="h-full bg-cyan-500 rounded-full transition-all duration-500" style="width: 65%;" data-free-shipping-progress></div>
+            <div class="h-full bg-cyan-500 rounded-full transition-all duration-500" style="width: 0%;" data-free-shipping-progress></div>
           </div>
         </div>
       {%- endif -%}
@@ -33,6 +33,21 @@
         <!-- Populated via AJAX or Liquid -->
       </div>
 
+      <!-- Optional Cart Notes from Theme Settings -->
+      {%- if settings.enable_cart_notes -%}
+        <div class="px-6 py-3 border-t border-slate-200 bg-slate-50/50">
+          <details class="group">
+            <summary class="flex items-center justify-between cursor-pointer text-xs font-bold text-slate-700 hover:text-cyan-600 transition-colors">
+              <span>{{ 'cart.note_title' | t | default: 'Add an order note or instructions' }}</span>
+              <span class="transition-transform group-open:rotate-180">▾</span>
+            </summary>
+            <div class="mt-2.5">
+              <textarea name="note" rows="2" class="w-full text-xs p-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-cyan-500" placeholder="{{ 'cart.note_placeholder' | t | default: 'Special instructions for delivery...' }}" data-cart-note>{{ cart.note }}</textarea>
+            </div>
+          </details>
+        </div>
+      {%- endif -%}
+
       <!-- Drawer Footer with Subtotal and Checkout -->
       <div class="p-6 border-t border-slate-200 bg-slate-50/80 space-y-4">
         <div class="flex items-center justify-between text-base font-extrabold text-slate-900">
@@ -41,7 +56,9 @@
         </div>
         <p class="text-xs text-slate-500 font-medium text-center">Taxes and free shipping calculated at checkout.</p>
         
-        <a href="/checkout" class="w-full py-4 bg-cyan-500 hover:bg-cyan-600 text-white font-black text-sm rounded-full flex items-center justify-center gap-2 shadow-lg shadow-cyan-500/25 transition-transform hover:scale-[1.01] active:scale-[0.99]">
+        <a href="/checkout" 
+           class="w-full py-4 text-white font-black text-sm rounded-full flex items-center justify-center gap-2 shadow-lg shadow-cyan-500/25 transition-transform hover:scale-[1.01] active:scale-[0.99] sald-btn"
+           style="border-radius: var(--btn-radius, 24px); background-color: var(--color-button-bg, #00C2CB); color: var(--color-button-text, #FFFFFF);">
           <span>{{ 'cart.checkout' | t | default: 'Proceed to Checkout' }}</span>
           <svg class="w-4 h-4 rtl:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>

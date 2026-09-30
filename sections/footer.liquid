@@ -1,74 +1,186 @@
-<footer class="sald-footer bg-slate-900 text-slate-300 pt-16 pb-12 border-t border-slate-800" data-section-id="{{ section.id }}">
+{%- liquid
+  assign footer_bg = settings.footer_bg_color | default: section.settings.bg_color | default: '#0F172A'
+  assign footer_text = settings.footer_text_color | default: section.settings.text_color | default: '#94A3B8'
+  assign footer_headings = settings.footer_heading_color | default: section.settings.heading_color | default: '#22D3EE'
+  assign footer_accent = settings.footer_accent_color | default: '#FBBF24'
+
+  assign show_newsletter = settings.footer_show_newsletter
+  if show_newsletter == nil
+    assign show_newsletter = true
+  endif
+  assign newsletter_heading = settings.footer_newsletter_heading | default: section.settings.newsletter_heading | default: 'Join Club SALD'
+  assign newsletter_subtext = settings.footer_newsletter_subtext | default: section.settings.newsletter_subtext | default: 'Get 15% off your first outdoor order and exclusive game guides.'
+
+  assign show_social = settings.footer_show_social
+  if show_social == nil
+    assign show_social = section.settings.show_social
+  endif
+  if show_social == nil
+    assign show_social = true
+  endif
+
+  assign show_pledge = settings.footer_show_pledge
+  if show_pledge == nil
+    assign show_pledge = section.settings.show_pledge
+  endif
+  if show_pledge == nil
+    assign show_pledge = true
+  endif
+  assign pledge_title = settings.footer_pledge_title | default: section.settings.pledge_title | default: 'The SALD 1-Year Splash Guarantee'
+  assign pledge_text = settings.footer_pledge_text | default: section.settings.pledge_text | default: 'If any equipment exhibits chlorine fading or UV wear within 365 days, we replace it instantly.'
+
+  assign show_payment_icons = settings.footer_show_payment_icons
+  if show_payment_icons == nil
+    assign show_payment_icons = section.settings.show_payment_icons
+  endif
+  if show_payment_icons == nil
+    assign show_payment_icons = true
+  endif
+
+  assign copyright_text = settings.footer_copyright_text | default: section.settings.copyright_text | default: 'All rights reserved. Built for active family memories.'
+
+  assign show_back_to_top = settings.footer_show_back_to_top
+  if show_back_to_top == nil
+    assign show_back_to_top = section.settings.show_back_to_top
+  endif
+  if show_back_to_top == nil
+    assign show_back_to_top = true
+  endif
+-%}
+
+{%- style -%}
+  .sald-footer-{{ section.id }} {
+    background-color: {{ footer_bg }};
+    color: {{ footer_text }};
+  }
+  .sald-footer-{{ section.id }} h3,
+  .sald-footer-{{ section.id }} h4 {
+    color: {{ footer_headings }};
+  }
+  .sald-footer-{{ section.id }} a:hover {
+    color: {{ footer_headings }};
+  }
+{%- endstyle -%}
+
+<footer class="sald-footer sald-footer-{{ section.id }} pt-16 pb-12 border-t border-slate-800 transition-colors" data-section-id="{{ section.id }}">
   <div class="max-w-[var(--page-width)] mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Top Pledge / Guarantee Banner (if enabled) -->
+    {%- if show_pledge -%}
+      <div class="mb-12 p-6 rounded-3xl bg-cyan-950/40 border border-cyan-800/40 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="flex items-center gap-4 text-left rtl:text-right">
+          <div class="w-12 h-12 rounded-2xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center flex-shrink-0">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+          </div>
+          <div>
+            <h4 class="text-base font-black text-white">{{ pledge_title }}</h4>
+            <p class="text-xs text-slate-300 mt-1 max-w-xl">{{ pledge_text }}</p>
+          </div>
+        </div>
+        <a href="/pages/warranty-guarantee" class="px-5 py-2.5 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-black text-xs whitespace-nowrap shadow-md transition-all">
+          Learn More
+        </a>
+      </div>
+    {%- endif -%}
+
+    <!-- Main Footer Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-slate-800">
       
-      <!-- Col 1: Brand Info -->
-      <div class="lg:col-span-2">
-        <div class="flex items-center gap-2 mb-4">
-          <svg class="h-9 w-auto" viewBox="0 0 320 80" fill="none">
-            <g transform="translate(10, 10)">
-              <path d="M 6 48 C 16 52, 28 52, 40 47 C 48 43, 56 46, 62 48" stroke="#00D2DF" stroke-width="4.5" stroke-linecap="round" fill="none"/>
-              <circle cx="12" cy="18" r="4.5" fill="#00D2DF" />
-              <circle cx="35" cy="18" r="7.5" fill="#FFD000"/>
-              <path d="M 18 42 C 16 26, 26 22, 34 29 C 40 34, 46 22, 54 28 C 58 31, 56 42, 38 42 Z" fill="#00D2DF"/>
-            </g>
-            <text x="82" y="55" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-weight="900" font-size="46" fill="#FFFFFF">S</text>
-            <text x="114" y="55" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-weight="900" font-size="46" fill="#FFFFFF">A</text>
-            <circle cx="130" cy="39" r="3.5" fill="#FFD000"/>
-            <text x="150" y="55" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-weight="900" font-size="46" fill="#00C2CB">L</text>
-            <text x="180" y="55" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-weight="900" font-size="46" fill="#FFFFFF">D</text>
-          </svg>
+      <!-- Col 1: Brand Story & Socials (2 cols) -->
+      <div class="lg:col-span-2 space-y-4">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="text-3xl font-black text-white tracking-tight">SALD</span>
+          <span class="text-[10px] uppercase font-black tracking-widest px-2.5 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-400/30">
+            Outdoor Fun
+          </span>
         </div>
-        <p class="text-sm text-slate-400 font-normal leading-relaxed max-w-sm mb-6">
-          SALD creates high-performance outdoor recreation gear, pool accessories, and garden games designed to bring families, friends, and kids together under the sun.
+        <p class="text-xs text-slate-400 font-normal leading-relaxed max-w-sm">
+          {{ section.settings.brand_text | default: 'SALD engineers professional-grade outdoor, pool, and backyard games built for active family memories under the sun.' }}
         </p>
-        <div class="flex items-center gap-3">
-          {% render 'social-icons' %}
-        </div>
+
+        {%- if show_social -%}
+          <div class="pt-2 flex items-center gap-3">
+            {%- if settings.social_instagram_link != blank -%}
+              <a href="{{ settings.social_instagram_link }}" target="_blank" rel="noopener" class="w-9 h-9 rounded-xl bg-slate-800 hover:bg-cyan-500 hover:text-white text-slate-400 flex items-center justify-center transition-colors" aria-label="Instagram">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+              </a>
+            {%- endif -%}
+            {%- if settings.social_tiktok_link != blank -%}
+              <a href="{{ settings.social_tiktok_link }}" target="_blank" rel="noopener" class="w-9 h-9 rounded-xl bg-slate-800 hover:bg-cyan-500 hover:text-white text-slate-400 flex items-center justify-center transition-colors" aria-label="TikTok">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.24 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+              </a>
+            {%- endif -%}
+            {%- if settings.social_facebook_link != blank -%}
+              <a href="{{ settings.social_facebook_link }}" target="_blank" rel="noopener" class="w-9 h-9 rounded-xl bg-slate-800 hover:bg-cyan-500 hover:text-white text-slate-400 flex items-center justify-center transition-colors" aria-label="Facebook">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+              </a>
+            {%- endif -%}
+            {%- if settings.social_youtube_link != blank -%}
+              <a href="{{ settings.social_youtube_link }}" target="_blank" rel="noopener" class="w-9 h-9 rounded-xl bg-slate-800 hover:bg-cyan-500 hover:text-white text-slate-400 flex items-center justify-center transition-colors" aria-label="YouTube">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+              </a>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
       </div>
 
       <!-- Col 2: Shop Menu -->
       <div>
-        <h4 class="text-xs font-black uppercase tracking-wider text-cyan-400 mb-4">Shop Outdoor</h4>
-        <ul class="space-y-2.5 text-sm font-medium">
-          <li><a href="/collections/pool-games" class="hover:text-white transition-colors">Pool Games &amp; Hoops</a></li>
-          <li><a href="/collections/playground" class="hover:text-white transition-colors">Playground &amp; Swings</a></li>
-          <li><a href="/collections/garden-games" class="hover:text-white transition-colors">Garden Games</a></li>
-          <li><a href="/collections/family-games" class="hover:text-white transition-colors">Family Fun Sets</a></li>
-          <li><a href="/collections/new-arrivals" class="hover:text-white transition-colors">New Summer Arrivals</a></li>
+        <h4 class="text-xs font-black uppercase tracking-wider mb-4">{{ section.settings.col1_heading | default: 'Shop Outdoor' }}</h4>
+        <ul class="space-y-2.5 text-xs font-medium">
+          <li><a href="/collections/pool-games" class="hover:text-cyan-400 transition-colors">Pool Games &amp; Hoops</a></li>
+          <li><a href="/collections/playground" class="hover:text-cyan-400 transition-colors">Playground &amp; Swings</a></li>
+          <li><a href="/collections/garden-games" class="hover:text-cyan-400 transition-colors">Garden &amp; Lawn Games</a></li>
+          <li><a href="/collections/family-games" class="hover:text-cyan-400 transition-colors">Family Fun Sets</a></li>
+          <li><a href="/collections/all" class="hover:text-cyan-400 transition-colors">View All Products</a></li>
         </ul>
       </div>
 
       <!-- Col 3: Customer Care -->
       <div>
-        <h4 class="text-xs font-black uppercase tracking-wider text-cyan-400 mb-4">Customer Care</h4>
-        <ul class="space-y-2.5 text-sm font-medium">
-          <li><a href="/pages/shipping-info" class="hover:text-white transition-colors">Shipping &amp; Delivery</a></li>
-          <li><a href="/pages/returns" class="hover:text-white transition-colors">30-Day Splash Returns</a></li>
-          <li><a href="/pages/faq" class="hover:text-white transition-colors">Frequently Asked Questions</a></li>
-          <li><a href="/pages/contact" class="hover:text-white transition-colors">Contact Support</a></li>
-          <li><a href="/pages/warranty" class="hover:text-white transition-colors">Chlorine &amp; UV Warranty</a></li>
+        <h4 class="text-xs font-black uppercase tracking-wider mb-4">{{ section.settings.col2_heading | default: 'Customer Care' }}</h4>
+        <ul class="space-y-2.5 text-xs font-medium">
+          <li><a href="/pages/shipping-policy" class="hover:text-cyan-400 transition-colors">Shipping &amp; Delivery</a></li>
+          <li><a href="/pages/warranty-guarantee" class="hover:text-cyan-400 transition-colors">30-Day Splash Guarantee</a></li>
+          <li><a href="/pages/faq" class="hover:text-cyan-400 transition-colors">Frequently Asked Questions</a></li>
+          <li><a href="/pages/contact" class="hover:text-cyan-400 transition-colors">Contact Support</a></li>
+          <li><a href="/pages/page-importer" class="hover:text-cyan-400 transition-colors">OS 2.0 Template Manifest</a></li>
         </ul>
       </div>
 
       <!-- Col 4: Newsletter Box -->
-      <div>
-        <h4 class="text-xs font-black uppercase tracking-wider text-amber-400 mb-4">Join Club SALD</h4>
-        <p class="text-xs text-slate-400 mb-3">Get 15% off your first outdoor order and exclusive backyard game rules.</p>
-        <form class="space-y-2">
-          <input type="email" placeholder="Your email address" class="w-full px-3.5 py-2.5 text-xs bg-slate-800 border border-slate-700 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400">
-          <button type="submit" class="w-full py-2.5 bg-cyan-500 hover:bg-cyan-600 text-white font-extrabold text-xs rounded-xl transition-colors">Subscribe</button>
-        </form>
-      </div>
+      {%- if show_newsletter -%}
+        <div>
+          <h4 class="text-xs font-black uppercase tracking-wider mb-4">{{ newsletter_heading }}</h4>
+          <p class="text-xs text-slate-400 mb-3">{{ newsletter_subtext }}</p>
+          <form class="space-y-2">
+            <input type="email" placeholder="Your email address" class="w-full px-3.5 py-2.5 text-xs bg-slate-800 border border-slate-700 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400" required>
+            <button type="submit" class="w-full py-2.5 bg-cyan-500 hover:bg-cyan-600 text-slate-950 font-black text-xs rounded-xl transition-colors">Subscribe</button>
+          </form>
+        </div>
+      {%- endif -%}
 
     </div>
 
-    <!-- Bottom copyright + payment icons -->
+    <!-- Bottom copyright + payment icons + back to top -->
     <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
-      <p>&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}. All rights reserved. Built with pride for endless sunshine.</p>
-      <div class="flex items-center gap-3">
-        <span class="text-slate-400 font-medium">Supported: Apple Pay · Visa · Mastercard · PayPal · Shop Pay</span>
-      </div>
+      <p>&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}. {{ copyright_text }}</p>
+      
+      {%- if show_payment_icons -%}
+        <div class="flex items-center gap-2 text-slate-400 font-bold text-[11px]">
+          <span class="px-2 py-0.5 bg-slate-800 rounded">Apple Pay</span>
+          <span class="px-2 py-0.5 bg-slate-800 rounded">Visa</span>
+          <span class="px-2 py-0.5 bg-slate-800 rounded">Mastercard</span>
+          <span class="px-2 py-0.5 bg-slate-800 rounded">Shop Pay</span>
+        </div>
+      {%- endif -%}
+
+      {%- if show_back_to_top -%}
+        <button type="button" onclick="window.scrollTo({top:0,behavior:'smooth'})" class="text-cyan-400 hover:underline inline-flex items-center gap-1 font-bold text-xs">
+          <span>Back to Top</span>
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg>
+        </button>
+      {%- endif -%}
     </div>
   </div>
 </footer>
@@ -78,10 +190,114 @@
   "name": "Footer",
   "settings": [
     {
+      "type": "header",
+      "content": "Footer Colors"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Footer background color",
+      "default": "#0F172A"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Footer body text color",
+      "default": "#94A3B8"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Footer headings color",
+      "default": "#22D3EE"
+    },
+    {
+      "type": "header",
+      "content": "Quality Guarantee Pledge Card"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_pledge",
+      "label": "Show quality guarantee card",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "pledge_title",
+      "label": "Pledge title",
+      "default": "The SALD 1-Year Splash Guarantee"
+    },
+    {
+      "type": "textarea",
+      "id": "pledge_text",
+      "label": "Pledge text",
+      "default": "If any equipment exhibits chlorine fading or UV wear within 365 days, we replace it instantly."
+    },
+    {
+      "type": "header",
+      "content": "Columns & Menus"
+    },
+    {
+      "type": "textarea",
+      "id": "brand_text",
+      "label": "Brand bio statement",
+      "default": "SALD engineers professional-grade outdoor, pool, and backyard games built for active family memories under the sun."
+    },
+    {
+      "type": "text",
+      "id": "col1_heading",
+      "label": "Column 1 heading",
+      "default": "Shop Outdoor"
+    },
+    {
+      "type": "text",
+      "id": "col2_heading",
+      "label": "Column 2 heading",
+      "default": "Customer Care"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_social",
+      "label": "Show social media links",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Newsletter Subscription"
+    },
+    {
+      "type": "text",
+      "id": "newsletter_heading",
+      "label": "Newsletter heading",
+      "default": "Join Club SALD"
+    },
+    {
+      "type": "textarea",
+      "id": "newsletter_subtext",
+      "label": "Newsletter subtext",
+      "default": "Get 15% off your first outdoor order and exclusive game guides."
+    },
+    {
+      "type": "header",
+      "content": "Bottom Bar"
+    },
+    {
       "type": "checkbox",
       "id": "show_payment_icons",
-      "label": "Show payment icons",
+      "label": "Show payment provider badges",
       "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_back_to_top",
+      "label": "Show 'Back to Top' button",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "copyright_text",
+      "label": "Custom copyright note",
+      "default": "All rights reserved. Built for active family memories."
     }
   ]
 }

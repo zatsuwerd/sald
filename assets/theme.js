@@ -24,6 +24,10 @@
     bindEvents() {
       document.addEventListener('click', (e) => {
         if (e.target.closest('[data-cart-open]')) {
+          if (window.SALD && window.SALD.cartType === 'page') {
+            window.location.href = '/cart';
+            return;
+          }
           e.preventDefault();
           this.open();
         } else if (e.target.closest('[data-cart-close]')) {
@@ -34,6 +38,21 @@
           const btn = e.target.closest('[data-quick-add]');
           const variantId = btn.getAttribute('data-quick-add');
           this.addItem(variantId, 1, btn);
+        }
+      });
+
+      // Cart note auto-saving
+      document.addEventListener('change', async (e) => {
+        if (e.target.matches('[data-cart-note]')) {
+          try {
+            await fetch('/cart/update.js', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ note: e.target.value })
+            });
+          } catch (err) {
+            console.error('Failed to save cart note', err);
+          }
         }
       });
 
@@ -111,10 +130,15 @@
       }
 
       if (this.shippingText) {
+        const unlockedTemplate = (window.SALD && window.SALD.freeShippingUnlockedText) || '🎉 Congratulations! You have unlocked FREE Express Delivery!';
+        const progressTemplate = (window.SALD && window.SALD.freeShippingText) || 'Add [amount] more to unlock FREE Express Delivery!';
+
         if (remaining <= 0) {
-          this.shippingText.innerHTML = '<span class="text-emerald-700">🎉 Congratulations! You unlocked FREE Express Delivery!</span>';
+          this.shippingText.innerHTML = '<span class="text-emerald-700 font-bold">' + unlockedTemplate + '</span>';
         } else {
-          this.shippingText.innerHTML = '<span>Add <strong class="text-cyan-700">$' + remaining.toFixed(2) + '</strong> more for FREE Express Shipping!</span>';
+          const formattedRemaining = '$' + remaining.toFixed(2);
+          const msg = progressTemplate.replace('[amount]', '<strong class="text-cyan-700">' + formattedRemaining + '</strong>');
+          this.shippingText.innerHTML = '<span>' + msg + '</span>';
         }
       }
     }

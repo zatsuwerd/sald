@@ -14,6 +14,8 @@
         "content_alignment": "center",
         "hero_height_desktop": 680,
         "hero_height_mobile": 520,
+        "mobile_height_mode": "fullscreen",
+        "desktop_height_mode": "large",
         "autoplay": true,
         "loop": true,
         "muted": true

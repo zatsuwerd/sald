@@ -53,30 +53,6 @@
       };
     </script>
     <style>
-      :root {
-        --color-primary: {{ settings.color_primary | default: '#15202B' }};
-        --color-secondary: {{ settings.color_secondary | default: '#00C2CB' }};
-        --color-accent: {{ settings.color_accent | default: '#FBBF24' }};
-        --color-bg: {{ settings.color_background | default: '#FFFFFF' }};
-        --color-surface: {{ settings.color_surface | default: '#F8FAFC' }};
-        --color-headings: {{ settings.color_headings | default: '#0F172A' }};
-        --color-body-text: {{ settings.color_body_text | default: '#334155' }};
-        --color-btn-bg: {{ settings.color_button_bg | default: '#00C2CB' }};
-        --color-btn-text: {{ settings.color_button_text | default: '#FFFFFF' }};
-        --color-btn-hover: {{ settings.color_button_hover | default: '#0891B2' }};
-        --card-radius: {{ settings.card_radius | default: 16 }}px;
-        --btn-radius: {{ settings.button_radius | default: 24 }}px;
-        --page-width: {{ settings.page_width | default: 1320 }}px;
-      }
-      .bg-cyan-500, .bg-cyan-600 { background-color: var(--color-btn-bg, var(--color-secondary, #00C2CB)) !important; }
-      .hover\:bg-cyan-600:hover, .hover\:bg-cyan-700:hover { filter: brightness(0.92); }
-      .text-cyan-600, .text-cyan-500 { color: var(--color-secondary, #00C2CB) !important; }
-      .border-cyan-500, .border-cyan-400 { border-color: var(--color-secondary, #00C2CB) !important; }
-      .bg-amber-400, .bg-amber-500 { background-color: var(--color-accent, #FBBF24) !important; }
-      .text-amber-400, .text-amber-500 { color: var(--color-accent, #FBBF24) !important; }
-      .rounded-2xl { border-radius: var(--card-radius, 16px) !important; }
-      .rounded-full.sald-btn, button.rounded-full, a.rounded-full { border-radius: var(--btn-radius, 24px) !important; }
-      .max-w-\[var\(--page-width\)\] { max-width: var(--page-width, 1320px) !important; }
       /* Glassmorphism Styling & Blur Support */
       .backdrop-blur-2xl {
         -webkit-backdrop-filter: blur(24px) saturate(160%);
@@ -109,18 +85,22 @@
       document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
       window.SALD = {
         moneyFormat: {{ shop.money_format | json }},
-        cartType: {{ settings.cart_type | json }},
+        cartType: {{ settings.cart_type | default: 'drawer' | json }},
         freeShippingThreshold: {{ settings.free_shipping_threshold | default: 75 | json }},
+        freeShippingText: {{ settings.free_shipping_text | default: 'Add [amount] more to unlock FREE Express Delivery!' | json }},
+        freeShippingUnlockedText: {{ settings.free_shipping_unlocked_text | default: '🎉 Congratulations! You have unlocked FREE Express Delivery!' | json }},
+        cardEnableQuickAdd: {{ settings.card_enable_quick_add | default: true | json }},
+        cardEnableQuickView: {{ settings.card_enable_quick_view | default: true | json }},
         strings: {
-          addToCart: {{ 'products.product.add_to_cart' | t | json }},
-          soldOut: {{ 'products.product.sold_out' | t | json }},
-          unavailable: {{ 'products.product.unavailable' | t | json }}
+          addToCart: {{ 'products.product.add_to_cart' | t | default: '+ Add' | json }},
+          soldOut: {{ 'products.product.sold_out' | t | default: 'Sold Out' | json }},
+          unavailable: {{ 'products.product.unavailable' | t | default: 'Unavailable' | json }}
         }
       };
     </script>
   </head>
 
-  <body class="sald-theme template-{{ template.name }} font-body bg-body text-body antialiased selection:bg-cyan-200">
+  <body class="sald-theme template-{{ template.name }} antialiased selection:bg-cyan-200">
     <a class="skip-to-content-link sr-only focus:not-sr-only focus:absolute focus:z-50 focus:p-4 focus:bg-white focus:text-slate-900" href="#MainContent">
       {{ 'general.skip_to_content' | t }}
     </a>

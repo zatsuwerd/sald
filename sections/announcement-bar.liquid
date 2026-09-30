@@ -1,8 +1,13 @@
+{%- liquid
+  assign bg_color = settings.color_announcement_bg | default: section.settings.bg_color | default: '#15202B'
+  assign text_color = settings.color_announcement_text | default: section.settings.text_color | default: '#FFFFFF'
+-%}
+
 {%- if section.settings.show_announcement -%}
 <aside class="sald-announcement-bar py-2.5 px-4 text-center text-xs md:text-sm font-semibold tracking-wide border-b transition-colors"
-  style="background-color: {{ section.settings.bg_color | default: settings.color_announcement_bg }}; color: {{ section.settings.text_color | default: settings.color_announcement_text }}; border-color: rgba(255,255,255,0.1);"
+  style="background-color: {{ bg_color }}; color: {{ text_color }}; border-color: rgba(255,255,255,0.12);"
   aria-label="Announcement">
-  <div class="max-w-7xl mx-auto flex items-center justify-center gap-3">
+  <div class="max-w-[var(--page-width)] mx-auto flex items-center justify-center gap-3">
     {%- if section.settings.link != blank -%}
       <a href="{{ section.settings.link }}" class="inline-flex items-center gap-2 hover:opacity-90 group transition-opacity">
         <span>{{ section.settings.text }}</span>
